@@ -16,6 +16,7 @@
 | `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
 | `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
 | `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/dmg/background.svg` | @XusBadia (DeckCraft contributors); recoloured and retitled by Bandpey GmbH | derived from DeckCraft's `packaging/macos/dmg/background.svg`; title outlined from Inter SemiBold (OFL-1.1) | MIT OR Apache-2.0 |
 <!-- facthory:end -->
 
 Every asset DeckCraft includes, bundles, embeds at build time or shows in its documentation, with
