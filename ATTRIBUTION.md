@@ -1,5 +1,23 @@
 # Attribution
 
+<!-- facthory:begin: Facthory's own files, written by facthory/icons/render.py; see facthory/README.md -->
+| Facthory asset | Author | Source | Licence |
+|---|---|---|---|
+| `facthory/icons/deck.svg` | Bandpey GmbH | original artwork | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/facthorydeck-1024.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/facthorydeck.icns` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/128x128/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/16x16/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/24x24/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/32x32/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/48x48/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+<!-- facthory:end -->
+
 Every asset DeckCraft includes, bundles, embeds at build time or shows in its documentation, with
 its author, source and licence. The policy is in [AGENTS.md](AGENTS.md) §1. `cargo xtask assets`
 fails if a file under `assets/`, `docs/images/` or `docs/brand/` is missing from this table.
