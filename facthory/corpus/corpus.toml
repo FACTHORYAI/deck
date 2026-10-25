@@ -1,0 +1,1040 @@
+# W6 fidelity corpus for Deck (.pptx): draft manifest, generated 2026-10-25
+# Every file is pinned by URL and SHA-256 and is NOT committed: fetch, verify, cache (bucket).
+# licence/licence_url: git sources: the licence file at the pinned commit (read); public-sector entries: see their source/note for where the licence was read.
+# producer: docProps/app.xml Application + AppVersion as read from the file.
+# tier: smoke = 20 early picks under 1.5 MB with publish_renders = yes (cover most features; for the gate), full = the rest.
+# producer is checked against traces only the Office apps write (Word w:rsids, Excel rupBuild, PowerPoint p14 or a 2007/2010 build).
+# publish_renders: yes = renders/screenshots may go into public test reports; review = check content first.
+
+schema = "facthory-corpus/1"
+app = "deck"
+format = "pptx"
+
+[[file]]
+id = "pptx-poi-000"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/integration/stress022.pptx"
+sha256 = "0bd000a429c378fe2ac933665527407f9b5d2155e3bf110911c8985f20e32c36"
+size = 866381
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/integration/stress022.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "connectors", "groups", "images", "notes", "rtl", "rtl-script", "smartart", "tables", "transitions"]
+stats = ["layouts:22", "masters:2", "slides:45"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-oxsdk-001"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/ForTestCase/typical.pptx"
+sha256 = "02a3df49dd36c319d4c34cd05591b4e6e055d365a9b4e79045a0cc9fd2441fb2"
+size = 653105
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/ForTestCase/typical.pptx"
+producer = "Microsoft PowerPoint 12.0000"
+features = ["animations", "connectors", "embeddings", "emf-wmf", "freeforms", "groups", "images", "notes", "ole", "tables", "transitions"]
+stats = ["layouts:14", "masters:1", "slides:15"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-digitalgov-002"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/plain-language-summit-irs-final.pptx"
+sha256 = "35f287dfa1c4d5a21b606e6161a56cef4d113ca13269a555e3c8a62f18c41bab"
+size = 7256501
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:plain-language-summit-irs-final.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["animations", "comments", "connectors", "groups", "images", "notes", "svg", "transitions"]
+stats = ["layouts:32", "masters:1", "slides:14"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-poi-003"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/integration/stress021.pptx"
+sha256 = "443016bb8dfe45d080cce2db36f21f8727c86477f72698aa4086c32a41a16160"
+size = 596690
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/integration/stress021.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "charts", "connectors", "groups", "images", "notes", "rtl", "rtl-script", "smartart", "tables"]
+stats = ["layouts:32", "masters:9", "slides:41"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-pypptx-004"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/features/steps/test_files/act-props.pptm"
+sha256 = "14af8bc6fa9ed94fbc895d8744993c682d29b028d232d2a25c29ddfe668682f5"
+size = 982098
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:features/steps/test_files/act-props.pptm"
+producer = "Microsoft Macintosh PowerPoint 16.0016"
+features = ["embeddings", "emf-wmf", "images", "macros", "media", "ole"]
+stats = ["layouts:1", "masters:1", "slides:5"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-poi-005"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/slideshow/ca.ubc.cs.people_~emhill_presentations_HowWeRefactor.pptx"
+sha256 = "54ef61cc914b0bb017f70eabe956a3e25948172ba989772dcfd6a69c2ad1620e"
+size = 2059644
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/slideshow/ca.ubc.cs.people_~emhill_presentations_HowWeRefactor.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["animations", "connectors", "freeforms", "groups", "images", "notes", "tables", "transitions"]
+stats = ["layouts:13", "masters:1", "slides:28"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-docx4j-006"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/loadAndSave.pptx"
+sha256 = "43847282f9e9fd427a8ceb37c3dddf4ff33c85b37fe94134874b0ded1a20eaeb"
+size = 134900
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/loadAndSave.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["charts", "comments", "embeddings", "images", "rtl-script", "svg"]
+stats = ["layouts:11", "masters:1", "slides:3"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-007"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/o09_Performance_typical.pptx"
+sha256 = "7b24556c2bc71b59f2e25574a25e416a99f20f99e0a62b676ea5bf061def805f"
+size = 1517471
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/o09_Performance_typical.pptx"
+producer = "Microsoft PowerPoint 12.0000"
+features = ["animations", "connectors", "embeddings", "emf-wmf", "groups", "images", "media", "notes", "ole", "tables", "transitions"]
+stats = ["layouts:14", "masters:1", "slides:11"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-poi-008"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/slideshow/customGeo.pptx"
+sha256 = "9baa7f4554cbaddfcebcc431432268ea34f20c02787172bb0a7d12d640e7e84f"
+size = 1046067
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/slideshow/customGeo.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "connectors", "emf-wmf", "freeforms", "groups", "images", "notes", "smartart", "tables", "transitions"]
+stats = ["layouts:15", "masters:1", "slides:48"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-digitalgov-009"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/static/files/2023-jan-irs-free-file-presentation.pptx"
+sha256 = "35af715e0873acec82b6f12395eddf458e8dec50ff3f6760ad6d57e14901dec2"
+size = 4232289
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:static/files/2023-jan-irs-free-file-presentation.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["connectors", "freeforms", "images", "notes", "smartart"]
+stats = ["layouts:28", "masters:1", "slides:31"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-poi-010"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/slideshow/bug64693.pptx"
+sha256 = "8cfe77cee329d0186fcb2827b5ad49371b3b7833ab6181e63de6b923e96ec275"
+size = 881432
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/slideshow/bug64693.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "cjk", "embeddings", "emf-wmf", "images", "ole", "sections", "transitions"]
+stats = ["layouts:6", "masters:4", "slides:1"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-digitalgov-011"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/static/files/uswds-monthly-call-nov-2022.pptx"
+sha256 = "b190a1a8888ea686acdd839fcaa9ffbdc0aa1e36966d4e012b024bf391260683"
+size = 14477957
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:static/files/uswds-monthly-call-nov-2022.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["animations", "connectors", "embedded-fonts", "groups", "images", "notes"]
+stats = ["layouts:24", "masters:1", "slides:82"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-pypptx-012"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/features/steps/test_files/ph-populated-placeholders.pptx"
+sha256 = "b08599276b4d708757951f2d45ac74cb4e81e94463d575e4d857690d0d231a60"
+size = 172254
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:features/steps/test_files/ph-populated-placeholders.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = ["charts", "embeddings", "images", "smartart", "tables"]
+stats = ["layouts:9", "masters:1", "slides:9"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-poi-013"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/slideshow/2411-Performance_Up.pptx"
+sha256 = "a387861a0066ad11ba85aba9572830c1ec1ab9a24380728ead34d2b5b26662c0"
+size = 648274
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/slideshow/2411-Performance_Up.pptx"
+producer = "Microsoft PowerPoint 12.0001"
+features = ["animations", "images", "notes", "tables", "transitions"]
+stats = ["layouts:13", "masters:1", "slides:48"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-docx4j-014"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-digsig/src/test/resources/goldens/rich.pptx"
+sha256 = "4f33c1d2505acbb9292a2a182409005b3db7e9ca0076eb120b370393af05d7f1"
+size = 140010
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-digsig/src/test/resources/goldens/rich.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["charts", "comments", "embeddings", "images", "rtl-script", "svg"]
+stats = ["layouts:11", "masters:1", "slides:3"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-digitalgov-015"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/static/files/uswds-monthly-call-december-2022.pptx"
+sha256 = "fa1252101b0c7cf583bfaf710a8c75fcfac645afaa5fe86ca0ab377817514f75"
+size = 10033483
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:static/files/uswds-monthly-call-december-2022.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["animations", "connectors", "embedded-fonts", "images", "notes"]
+stats = ["layouts:41", "masters:2", "slides:75"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-oxpt-016"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/TestFiles/PP006-Videos.pptx"
+sha256 = "208b4b19f17cd665b905b38e197d54d6337224a95d01e6c506b335c33f34aa42"
+size = 286663
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:TestFiles/PP006-Videos.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["animations", "images", "media"]
+stats = ["layouts:11", "masters:1", "slides:5"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-017"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/AllSlidesConverterSC.pptx"
+sha256 = "8a885c758b1ca9a1b81b4250df3a171a4d71b6e83ca5eee4add15f31e0d469cf"
+size = 53655
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/AllSlidesConverterSC.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["cjk", "notes"]
+stats = ["layouts:11", "masters:1", "slides:5"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-poi-018"
+url = "https://raw.githubusercontent.com/apache/poi/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/test-data/integration/stress013.pptx"
+sha256 = "1b794eee93373a81593465aeb7cd83b78d5a58185434aef44373278c794ece86"
+size = 170655
+licence = "Apache-2.0"
+licence_url = "https://github.com/apache/poi/blob/4f3c25563919e7efa4a75feccf6cef1ac3d05a04/legal/LICENSE"
+source = "apache/poi@4f3c25563919:test-data/integration/stress013.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["animations", "connectors", "groups", "images", "notes", "tables", "transitions"]
+stats = ["layouts:11", "masters:1", "slides:23"]
+tier = "full"
+publish_renders = "review"
+note = "Apache POI test-data: many files are user-supplied bug attachments; Apache-2.0 asserted by the ASF repository, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-digitalgov-019"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/static/files/uswds-monthly-call-january-2023.pptx"
+sha256 = "4a4985f33203a0189b87b45ddeaf01fefb3a83c4014d84d6e59bb398974cf820"
+size = 2011608
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:static/files/uswds-monthly-call-january-2023.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["animations", "embedded-fonts", "images", "notes"]
+stats = ["layouts:24", "masters:1", "slides:60"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-pypptx-020"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/features/steps/test_files/shp-picture.pptx"
+sha256 = "20b6295563e217804af81f8b5fee5e5cef9e766ac401d825d536ffe6d674edd0"
+size = 91730
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:features/steps/test_files/shp-picture.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0015"
+features = ["images"]
+stats = ["layouts:1", "masters:1", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-pypptx-021"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/features/steps/test_files/shp-shapes.pptx"
+sha256 = "302dc642b791f49da6057b69a7ef2a0804f61d9469e7e49e9e734ae3305951cc"
+size = 125205
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:features/steps/test_files/shp-shapes.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = ["charts", "connectors", "embeddings", "groups", "images", "smartart", "tables"]
+stats = ["layouts:1", "masters:1", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-digitalgov-022"
+url = "https://raw.githubusercontent.com/GSA/digitalgov.gov/4979583206d90ff1707b097454a9b169ca9e95e4/telework-and-hybrid-successful-strategies.pptx"
+sha256 = "de855b9644e7d11f0eaacaf00a1b902f27e89a8cfebebc4d73aa623d0f72ae10"
+size = 2809722
+licence = "CC0-1.0 (US federal public domain)"
+licence_url = "https://github.com/GSA/digitalgov.gov/blob/4979583206d90ff1707b097454a9b169ca9e95e4/LICENSE.md"
+source = "GSA/digitalgov.gov@4979583206d9:telework-and-hybrid-successful-strategies.pptx"
+producer = "Microsoft Macintosh PowerPoint 16.0000"
+features = ["animations", "groups", "images", "notes", "tables", "transitions"]
+stats = ["layouts:22", "masters:2", "slides:161"]
+tier = "full"
+publish_renders = "review"
+note = "real-world talk deck; CC0 covers GSA's work, check photos/logos of third parties before publishing renders"
+
+[[file]]
+id = "pptx-oxsdk-023"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/bvt/O12Typical.pptx"
+sha256 = "9e577e380f7d19f4834639f35eaa0ea40ca3f287b99ea4fff0b697abeb66f034"
+size = 944497
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/bvt/O12Typical.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["charts", "images", "smartart", "tables"]
+stats = ["layouts:9", "masters:1", "slides:14"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-024"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-digsig/src/test/resources/corpus/sections.pptx"
+sha256 = "af84952de24854f10b2761ffe56755895ab0fb788f2817809a418859a2f26d86"
+size = 36525
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-digsig/src/test/resources/corpus/sections.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["images", "sections", "transitions"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-025"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/NewPptxPresentations/TenSlides.pptx"
+sha256 = "6cd3cc036a0c02264df7cd058ab4aa4d08ba800c1d9313b5ef169629a23db933"
+size = 58510
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:NewPptxPresentations/TenSlides.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "transitions"]
+stats = ["layouts:16", "masters:1", "slides:10"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-026"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/CompanyBackgroundPresentation_TP10219425.potx"
+sha256 = "364bdc2a9a63758e900a735b20782d53752df238cbe80ef4dbdfb3ae0f72ec62"
+size = 86970
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12 templates/CompanyBackgroundPresentation_TP10219425.potx"
+producer = "Microsoft PowerPoint 7.0 12.0000"
+features = ["animations", "images", "transitions"]
+stats = ["layouts:11", "masters:1", "slides:13"]
+tier = "full"
+publish_renders = "review"
+note = "Office.com template (TP id) shipped in Microsoft's MIT-licensed test assets: test input only, never a source for product templates, themes or art; may contain stock imagery: review before publishing renders"
+
+[[file]]
+id = "pptx-oxpt-027"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/OpenXmlPowerToolsExamples/PresentationBuilder01/Contoso.pptx"
+sha256 = "ae837e83e2094e9f8471b2d1eaba15962311aa52250af44127fc7a6a8b296ce9"
+size = 67552
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:OpenXmlPowerToolsExamples/PresentationBuilder01/Contoso.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["images"]
+stats = ["layouts:11", "masters:1", "slides:14"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-028"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/mediareference.pptx"
+sha256 = "2a97334494e3287d5a1bd06139905f3a15758f81e77db56bbee1dcb047bbc827"
+size = 52998
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/mediareference.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "images", "media"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-029"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-digsig/src/test/resources/goldens/macro.pptm"
+sha256 = "7e2b969ebac60319743a04aa2338967c7d2d3084efc76d4c818f6c2fa15d6428"
+size = 45959
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-digsig/src/test/resources/goldens/macro.pptm"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["macros"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-030"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/NewPptxPresentations/FiveSlides.pptx"
+sha256 = "6f4f64d3cd463df0d18ff9fdbe4800548ed780d449d22ab67e063ce3b3d9f925"
+size = 631103
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:NewPptxPresentations/FiveSlides.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "images", "transitions"]
+stats = ["layouts:17", "masters:1", "slides:5"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-031"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/SalesProposalPresentation_TP10219422.potx"
+sha256 = "6434d62944a825412d036f3989082388d974ae2201cc085be34d755ae3638242"
+size = 197658
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12 templates/SalesProposalPresentation_TP10219422.potx"
+producer = "Microsoft PowerPoint 12.0000"
+features = ["animations", "embeddings", "emf-wmf", "images", "ole", "transitions"]
+stats = ["layouts:12", "masters:1", "slides:16"]
+tier = "full"
+publish_renders = "review"
+note = "Office.com template (TP id) shipped in Microsoft's MIT-licensed test assets: test input only, never a source for product templates, themes or art; may contain stock imagery: review before publishing renders"
+
+[[file]]
+id = "pptx-docx4j-032"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-digsig/src/test/resources/goldens/notes.pptx"
+sha256 = "43db32fe6cd1a08759ffe3e8ad01a2dc768c4a03a4b3e67894516b5a27897384"
+size = 58643
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-digsig/src/test/resources/goldens/notes.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["connectors", "images", "notes"]
+stats = ["layouts:11", "masters:1", "slides:4"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-033"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/anon/pptx-chart.pptx"
+sha256 = "d1093de8bf33318b1c39e6cfcbbfae24b5d287da765db32bce23430f8392c89d"
+size = 52092
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/anon/pptx-chart.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = ["charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-034"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/TestFiles/PB001-Input1.pptx"
+sha256 = "14b54006862844a1e7c8c4e9e8170df17b7fe69ebd8cfbbfcb6dcd4e16388ffc"
+size = 928363
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:TestFiles/PB001-Input1.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["animations", "connectors", "groups", "images", "notes", "tables"]
+stats = ["layouts:31", "masters:5", "slides:2"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-035"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/samples/Linq/SvgExample/Content/EmptySlide.pptx"
+sha256 = "a78b21b5f2f99c7f0f125eb8b689ac7b1a96f32b9a08318093faa44ba51ca639"
+size = 41813
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:samples/Linq/SvgExample/Content/EmptySlide.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["embeddings", "emf-wmf", "images", "ole"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "smoke"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-036"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/TestFiles/Presentation.pptx"
+sha256 = "cfcbbc0c81be8f4bda6975ef4d1a60daf4bdc81172ea971b158c42fe3d58fda5"
+size = 1081143
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:TestFiles/Presentation.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "images", "smartart", "transitions"]
+stats = ["layouts:17", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-037"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/%5BHC%5DviewPr-PresentationViewProperties-showComments-1.pptx"
+sha256 = "d2760aa4ff931f64d16f9d957f5b1035676c59f408a7ae7268f671a6e81e0442"
+size = 79550
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/[HC]viewPr-PresentationViewProperties-showComments-1.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["comments", "images"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-pypptx-038"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/tests/test_files/test_slides.pptx"
+sha256 = "8442cac5daafd3211a6a1fff393640cbe5f01faed54d4e00d9aa4fdcba23f7e0"
+size = 38616
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:tests/test_files/test_slides.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = ["connectors", "groups", "images", "tables"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-039"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/macro%20enabled.potm"
+sha256 = "b675a80eb2a71d82744a703ad7d96526f2ef2d719282e25f2b886ecbbe270288"
+size = 35366
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/macro enabled.potm"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["macros"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-040"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/2D%20Area-O12-PPT-Charts.pptx"
+sha256 = "36b0cf11905bb3a0c58a415a06968466f15ba13960b4ceeed526152ea8bb7b5b"
+size = 81167
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/2D Area-O12-PPT-Charts.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:3"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxsdk-041"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/Presentation.pptx"
+sha256 = "799966923bf7bee0c98308ed94238d12e326e1fe624eaed76bc418748cef0b07"
+size = 1025720
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/Presentation.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "images", "smartart", "transitions"]
+stats = ["layouts:17", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-042"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/OpenXmlPowerToolsExamples/PresentationBuilder01/Customer%20Content.pptx"
+sha256 = "79ee477bca5b958de69aebda42bd44b04af7c85f69720b71a4ae291f4f7fd0b9"
+size = 50150
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:OpenXmlPowerToolsExamples/PresentationBuilder01/Customer Content.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:3"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-043"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/%5BHC%5Dcmedianode-CommonMediaNodProperties.pptx"
+sha256 = "dd2a903346346da740dab6e75923ff71282faaf2b2643829febfa12669a88154"
+size = 70719
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/[HC]cmedianode-CommonMediaNodProperties.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "images", "media"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxsdk-044"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/HasLinkedPresentation.pptx"
+sha256 = "4ce8afd55fc16634cd76e896419c450e2cafe5c92843f1c7a46dff1d8fdd8468"
+size = 34738
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/HasLinkedPresentation.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["emf-wmf", "images", "ole"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-045"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/OpenXmlPowerToolsExamples/PresentationBuilder02/Presentation1.pptx"
+sha256 = "a2f00ba6a115592901efe05df9db259e6f4470bece550904f02be30ab6dd8e05"
+size = 48990
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:OpenXmlPowerToolsExamples/PresentationBuilder02/Presentation1.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = []
+stats = ["layouts:16", "masters:1", "slides:3"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-046"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/charts/waterfall.pptx"
+sha256 = "39a84e811e72ff16dc69bb0af2caefc147dd2a70913ed7b78f3f5fd6f0bec419"
+size = 62064
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/charts/waterfall.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["charts", "embeddings", "images"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-047"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/SoundTest.pptx"
+sha256 = "ed683a69046922d46695db8d1fb81d36caedfad9c92db2b21f390b75b03ad61f"
+size = 57863
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/SoundTest.pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["animations", "images", "media"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-048"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/animation.pptx"
+sha256 = "b81bda36d34258d78329187df6beb99d12bba5a3bd25e7a51506ede016a72191"
+size = 100209
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/animation.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "images", "transitions"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-049"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/5.9.3.7%28unfinished%29.pptx"
+sha256 = "aa5efe950f126a68f72ee5b2153627f4fa96eb4d5b9354f411ad546b5e7d58e9"
+size = 81194
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/5.9.3.7(unfinished).pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["images", "smartart"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-docx4j-050"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/anon/strict.pptx"
+sha256 = "cb550dbff26d879638ea7474a6b9ece321de15c62327d02cd6c050b2f1b59ace"
+size = 103701
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/anon/strict.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["images"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxpt-051"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/OpenXmlPowerToolsExamples/ChartUpdater01/Chart-Embedded-Xlsx-41.pptx"
+sha256 = "75b496730ad75cf1140a76a714592496ad961bde459a129e901668632dcfa9b3"
+size = 45779
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:OpenXmlPowerToolsExamples/ChartUpdater01/Chart-Embedded-Xlsx-41.pptx"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-pypptx-052"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/tests/test_files/no-core-props.pptx"
+sha256 = "93289b5e951a7256ef783651e1245284472c77512fc3d8df17680dd693fc5c6c"
+size = 34436
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:tests/test_files/no-core-props.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = []
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-053"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-chart-render/src/test/resources/charts/render/office/p4-area.pptx"
+sha256 = "938f7cf6c8be2beeb55a4e7597a39102a6d3bd869abea98fcd2b9638307eaf6d"
+size = 48373
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-chart-render/src/test/resources/charts/render/office/p4-area.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-054"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/charts/authoring/p5p-add-category-after.pptx"
+sha256 = "dceed894571e8e3b01d769032753bddee49ae1711dc3bab608552b8e1355747e"
+size = 49340
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/charts/authoring/p5p-add-category-after.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxpt-055"
+url = "https://raw.githubusercontent.com/OfficeDev/Open-Xml-PowerTools/5881422a881f6ccefce2b9801b5dc6a753670d6e/OpenXmlPowerToolsExamples/TextReplacer01/Test01.pptx"
+sha256 = "0046e598bddb4b2a7855877e8eb3c611387a06d72435c20d84088f9c74e198e2"
+size = 34569
+licence = "MIT"
+licence_url = "https://github.com/OfficeDev/Open-Xml-PowerTools/blob/5881422a881f6ccefce2b9801b5dc6a753670d6e/LICENSE"
+source = "OfficeDev/Open-Xml-PowerTools@5881422a881f:OpenXmlPowerToolsExamples/TextReplacer01/Test01.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = []
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-056"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/Photo%20Album3.pptx"
+sha256 = "9d6fe63f940b267a601629deb7b4a3cd7a092a2c0c12d0714d49e8c752456474"
+size = 144107
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/Photo Album3.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["images"]
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxsdk-057"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/bldlst-Build%20Graphics-bldgraphic-uiexpand.pptx"
+sha256 = "799f68e46c2b8f9e800fbb9aff551d89e14039b439294b51aaa6d14085b809ef"
+size = 63965
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/PowerPoint/bldlst-Build Graphics-bldgraphic-uiexpand.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "charts", "embeddings"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxsdk-058"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/anchorModified.pptx"
+sha256 = "06dd5d1f54fa66cb102890cc621f0b10bb67a87914928ac232a4e296bb8b41fb"
+size = 36807
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/anchorModified.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = []
+stats = ["layouts:11", "masters:1", "slides:2"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-docx4j-059"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/charts/p2-pasted.pptx"
+sha256 = "d9d755965ed891da07fdc46c83446257edb77dc4acb6bf16b29bd3df082e9da8"
+size = 38420
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/charts/p2-pasted.pptx"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["charts"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-060"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/asSources/presentation/Text_withExtrusion_200chars%2BAnimation%20%28Fly%20In%2C%20all%20at%20once%29.pptx"
+sha256 = "03d5c0436c3aad4100d41245ad67536597213033d295f80a503062327af2f979"
+size = 66930
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/asSources/presentation/Text_withExtrusion_200chars+Animation (Fly In, all at once).pptx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["animations", "notes"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-docx4j-061"
+url = "https://raw.githubusercontent.com/plutext/docx4j/da086de488768dbf296e58fb6f3affab7189146f/docx4j-core-tests/src/test/resources/anon/table.pptx"
+sha256 = "6c339ca76af4e535188dbb76b91640a9f3388b794f9d97e544cd5670fbf66c4f"
+size = 36423
+licence = "Apache-2.0"
+licence_url = "https://github.com/plutext/docx4j/blob/da086de488768dbf296e58fb6f3affab7189146f/legals/LICENSE"
+source = "plutext/docx4j@da086de48876:docx4j-core-tests/src/test/resources/anon/table.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["tables"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-oxsdk-062"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/MRDProductSteeringCommitteePresentation_TP10193309.potx"
+sha256 = "a96d50b4848279d746f0299c816af17ec04f33c9aa78e9c491221cece80235fb"
+size = 203401
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12 templates/MRDProductSteeringCommitteePresentation_TP10193309.potx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["animations", "charts", "embeddings", "images", "notes", "tables"]
+stats = ["layouts:11", "masters:1", "slides:18"]
+tier = "full"
+publish_renders = "review"
+note = "Office.com template (TP id) shipped in Microsoft's MIT-licensed test assets: test input only, never a source for product templates, themes or art; may contain stock imagery: review before publishing renders"
+
+[[file]]
+id = "pptx-oxsdk-063"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/audioCdModifiedAndReSaved.pptx"
+sha256 = "b77edaa4e3df6c16f20c536adfa8d9e959d23981b79d4c39a6ba5d9d970129fc"
+size = 36866
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O14ISOStrict/Graphics/audioCdModifiedAndReSaved.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "images"]
+stats = ["layouts:11", "masters:1", "slides:1"]
+tier = "full"
+publish_renders = "yes"
+conformance = "strict"
+
+[[file]]
+id = "pptx-oxsdk-064"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/ForTestCase/Bug571679_Brownbag.pptx"
+sha256 = "0c922ea8a2017017cadfbeb8616d0825073b92556241c060145be9ff3354b79a"
+size = 686720
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/ForTestCase/Bug571679_Brownbag.pptx"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "images", "notes", "smartart", "transitions"]
+stats = ["layouts:11", "masters:1", "slides:18"]
+tier = "full"
+publish_renders = "review"
+note = "user-attached bug-tracker file: licence asserted by the project, authorship unverified; review content before publishing renders"
+
+[[file]]
+id = "pptx-oxsdk-065"
+url = "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/431ab05cf160248cc3885a4a766026d4f8243792/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/SalesPropPres_TP10220213.potx"
+sha256 = "4dbe0deaf82a36935361c6543ba746c734fef2eb0a36f084f2a73190609cb5ba"
+size = 111456
+licence = "MIT"
+licence_url = "https://github.com/dotnet/Open-XML-SDK/blob/431ab05cf160248cc3885a4a766026d4f8243792/LICENSE"
+source = "dotnet/Open-XML-SDK@431ab05cf160:test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12 templates/SalesPropPres_TP10220213.potx"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["charts", "embeddings", "smartart", "tables"]
+stats = ["layouts:11", "masters:1", "slides:16"]
+tier = "full"
+publish_renders = "review"
+note = "Office.com template (TP id) shipped in Microsoft's MIT-licensed test assets: test input only, never a source for product templates, themes or art; may contain stock imagery: review before publishing renders"
+
+[[file]]
+id = "pptx-pypptx-066"
+url = "https://raw.githubusercontent.com/scanny/python-pptx/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/src/pptx/templates/default.pptx"
+sha256 = "e10cc9e120961f6bd4074a373c9c80d2a06c497157e8f4972977b7bea83a8f34"
+size = 34030
+licence = "MIT"
+licence_url = "https://github.com/scanny/python-pptx/blob/278b47b1dedd5b46ee84c286e77cdfb0bf4594be/LICENSE"
+source = "scanny/python-pptx@278b47b1dedd:src/pptx/templates/default.pptx"
+producer = "Microsoft Macintosh PowerPoint 14.0000"
+features = []
+stats = ["layouts:11", "masters:1", "slides:0"]
+tier = "full"
+publish_renders = "yes"
+
+[[file]]
+id = "pptx-gov-000"
+url = "https://avoindata.suomi.fi/data/dataset/5c8ddae2-5959-4337-b1ee-0d892154d547/resource/b153d39a-cae4-4858-9cb5-b25a07e59f8e/download/cusersa017216desktopspavisiospatietoarkkitehtuuri.pptx"
+sha256 = "10c9332cf761289d91729052e5ee8273572b6be9e43b2c29b782df3714422b04"
+size = 233961
+licence = "CC-BY-4.0"
+licence_url = "https://creativecommons.org/licenses/by/4.0/"
+source = "avoindata.suomi.fi dataset 5c8ddae2 (licence verified through the portal API: cc-by-4.0)"
+producer = "Microsoft Office PowerPoint 15.0000"
+features = ["animations", "emf-wmf", "images", "tables"]
+stats = ["layouts:8", "masters:1", "slides:16"]
+tier = "full"
+publish_renders = "yes"
+mirror = "required: origin URL is not content-stable; keep a copy in the corpus bucket (licence permits redistribution)"
+note = "Finnish; EMF diagrams"
+
+[[file]]
+id = "pptx-gov-001"
+url = "https://files.digital.nhs.uk/A6/CD0E5A/NDA_DPP_MainReport_1718_1.1.pptx"
+sha256 = "a93961619bd3bee20cf5726a966a1b7d9930b6095acd5e3dc35edd53ad403fca"
+size = 452637
+licence = "Open Government Licence v3.0 (NHS Digital; portal record says CC-BY)"
+licence_url = "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+source = "NHS Digital, National Diabetes Audit DPP 2017-18 (via data.gov.uk / data.europa.eu)"
+producer = "Microsoft Office PowerPoint 16.0000"
+features = ["charts", "connectors", "embeddings", "images", "notes", "sections", "tables"]
+stats = ["layouts:4", "masters:1", "slides:15"]
+tier = "full"
+publish_renders = "review"
+mirror = "required: origin URL is not content-stable; keep a copy in the corpus bucket (licence permits redistribution)"
+note = "charts, embedded workbook, sections; NHS logo"
+
+[[file]]
+id = "pptx-gov-002"
+url = "http://www.europarl.europa.eu/pdf/eurobarometre/2012/election_2012/Parlement_EB774PARLelections_EN_final.pptx"
+sha256 = "282b5b176fe82ec75edc138539403cca3705a065d2e0d02d8981de5167f64ee0"
+size = 4146803
+licence = "European Parliament reuse (portal record COM_REUSE: reproduction authorised, source acknowledged)"
+licence_url = "https://www.europarl.europa.eu/legal-notice/en/"
+source = "European Parliament Eurobarometer 77.4 (via data.europa.eu)"
+producer = "Microsoft Office PowerPoint 14.0000"
+features = ["animations", "connectors", "freeforms", "groups", "images"]
+stats = ["layouts:11", "masters:1", "slides:36"]
+tier = "full"
+publish_renders = "review"
+mirror = "required: origin URL is not content-stable; keep a copy in the corpus bucket (licence permits redistribution)"
+note = "36 slides, animations, freeforms; verify reuse notice on europarl.europa.eu"
+
+[[file]]
+id = "pptx-gov-003"
+url = "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/190928/ecgd-structure-chart-march-2012.pptx"
+sha256 = "c52496f467a035e0977765917bda97c503d2ff13b16dbc0ed12626281d555f2b"
+size = 151674
+licence = "Open Government Licence v3.0"
+licence_url = "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+source = "GOV.UK, ECGD organogram"
+producer = "Microsoft Office PowerPoint 12.0000"
+features = ["connectors", "images", "tables"]
+stats = ["layouts:11", "masters:1", "slides:3"]
+tier = "full"
+publish_renders = "review"
+mirror = "required: origin URL is not content-stable; keep a copy in the corpus bucket (licence permits redistribution)"
+note = "PowerPoint 2007 (12.0) org chart; names senior staff: blur or skip in published renders"
