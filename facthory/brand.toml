@@ -301,3 +301,9 @@ allow = [
   # Build inputs used unmodified (Cargo git dependencies), not a product surface.
   'https://github.com/storytold/craft-libs',
 ]
+
+# ---------------------------------------------------------------------------------------------
+# facthory/sync.py: upstream files the patch set removed stay removed when a merge changes them.
+
+[sync]
+removed = [".github/dependabot.yml"]
