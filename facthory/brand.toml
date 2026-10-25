@@ -292,6 +292,8 @@ allow = [
   # Files from before upstream's SlideCraft -> DeckCraft rename still open (crates/format): a
   # format identifier the app reads, never shows or writes.
   'application/vnd.storyteller.slidecraft+zip',
+  # Provenance of the media codecs, in a Cargo.toml comment (upstream's same-owner sibling).
+  'ported from FilmCraft, same owner and licence',
   # Build inputs used unmodified (Cargo git dependencies), not a product surface.
   'https://github.com/storytold/craft-libs',
 ]
