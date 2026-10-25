@@ -23,9 +23,10 @@ macos_512 = false
 svg_copy = false
 
 [files]
-# Names fixed inside binary fixtures, which the text naming them must keep matching: the
-# COLR test font's family name (crates/render/tests/fixtures/colr-squares.ttf). Tests only.
-keep = ["DeckCraft Colr Squares"]
+# Names fixed inside binary fixtures, which the text naming them must keep matching: the test
+# fonts' family names (crates/render/tests/fixtures/colr-squares.ttf,
+# crates/fonts/tests/fixtures/legacy-*.ttf). Tests only.
+keep = ["DeckCraft Colr Squares", "DeckCraft Legacy"]
 # Never touched: upstream's licences and notices stay exactly as written (Apache-2.0 §4).
 skip = ["LICENSE-APACHE", "LICENSE-MIT", "NOTICE", ".github"]
 # Credit files. No token here applies to them (none is credits = true): contributors.json names
