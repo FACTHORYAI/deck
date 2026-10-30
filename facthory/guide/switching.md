@@ -214,10 +214,11 @@ Every action in Facthory Deck is a command with a stable id that scripts and AI 
   --automation-write-root DIR`.
 
 Where the CLI is: on Linux the `.deb` and `.rpm` install `facthorydeck-cli` on your `PATH` (the
-`.tar.gz` has it in `bin/`); on Windows it is in `C:\Program Files\Facthory Deck\` (add that folder
-to `PATH` to call it by name); on macOS it is inside the app,
-`/Applications/Facthory Deck.app/Contents/MacOS/facthorydeck-cli`, and also a separate download,
-`facthorydeck-cli-<version>-macos-universal.zip`. Details:
+`.tar.gz` has it in `bin/`); on Windows it is in the app's folder,
+`%LOCALAPPDATA%\Programs\Facthory\Facthory Deck\`, or `C:\Program Files\Facthory\Facthory Deck\`
+when installed for everyone (add that folder to `PATH` to call it by name); on macOS it is inside
+the app, `/Applications/Facthory Deck.app/Contents/MacOS/facthorydeck-cli`, and also a separate
+download, `facthorydeck-cli-<version>-macos-universal.zip`. Details:
 [docs/mcp.md](https://github.com/FACTHORYAI/deck/blob/main/docs/mcp.md).
 
 ## 9. Getting help
