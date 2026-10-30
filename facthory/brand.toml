@@ -120,6 +120,30 @@ pub fn paint_logo(p: &egui::Painter, r: Rect) {
 regex = true
 count = 1
 
+[[rule]]
+why = "macOS: the CLI goes inside the app, beside the app's own executable, so a Facthory agent finds the MCP server where the app is installed (W5); the Windows and Linux installers already carry it"
+files = "packaging/macos/package.sh"
+find = '''
+cp "$WORK/bin/deckcraft" "$APP/Contents/MacOS/DeckCraft"
+'''
+replace = '''
+cp "$WORK/bin/deckcraft" "$APP/Contents/MacOS/DeckCraft"
+cp "$WORK/bin/deckcraft-cli" "$APP/Contents/MacOS/deckcraft-cli"
+'''
+count = 1
+
+[[rule]]
+why = "... signed with the hardened runtime before the bundle, as nested code is"
+files = "packaging/macos/package.sh"
+find = '''
+sign --options runtime --entitlements "$HERE/entitlements.plist" "$APP/Contents/MacOS/DeckCraft"
+'''
+replace = '''
+sign --options runtime "$APP/Contents/MacOS/deckcraft-cli"
+sign --options runtime --entitlements "$HERE/entitlements.plist" "$APP/Contents/MacOS/DeckCraft"
+'''
+count = 1
+
 # ---------------------------------------------------------------------------------------------
 # Tokens, in order, over every text file except the skipped and credit files.
 
