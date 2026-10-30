@@ -153,6 +153,20 @@ replace = ""
 regex = true
 count = 1
 
+[[rule]]
+why = "Windows packaging: a .NET namespace takes no space, so the app's display name cannot stand in for it"
+files = "packaging/windows/package.ps1"
+find = "Add-Type -Namespace DeckCraft -Name Shell"
+replace = "Add-Type -Namespace FacthoryDeck -Name Shell"
+count = 1
+
+[[rule]]
+why = "About: our painted logo (below) draws no stroke, so its import goes"
+files = "crates/ui-egui/src/dialogs/about.rs"
+find = "use super::{Color32, CornerRadius, Rect, Sense, SlideApp, Stroke, Tokens, Ui, pos2, theme, vec2};"
+replace = "use super::{Color32, CornerRadius, Rect, Sense, SlideApp, Tokens, Ui, pos2, theme, vec2};"
+count = 1
+
 # ---------------------------------------------------------------------------------------------
 # Tokens, in order, over every text file except the skipped and credit files.
 
@@ -229,7 +243,8 @@ to = "facthorydeck"
 
 [guids]
 namespace = "https://facthory.com/deck/windows-installer"
-files = ["packaging/windows/*.wxs"]
+# The installer's own policy check records the upgrade identity: the same GUIDs, mapped alike.
+files = ["packaging/windows/*.wxs", "packaging/windows/install-policy.json"]
 
 # ---------------------------------------------------------------------------------------------
 # Rules after the tokens and renames: the credits, which name upstream on purpose, and ids the
