@@ -249,11 +249,11 @@ The icon must not resemble Microsoft's orange "P" (§14.5).
 
 The local Deck checkout has no `facthory-release.yml` yet (Page's builds signed x64 and ARM64 MSIs and drafts the GitHub release); W4 adds the same workflow to Deck before the first submission.
 
-## Notes for certification (<!--n:notes-->1,435<!--/--> characters; limit 2,000)
+## Notes for certification (<!--n:notes-->1,535<!--/--> characters; limit 2,000)
 
 <!-- block:notes -->
 ```text
-Facthory Deck is a desktop presentation app delivered as a per-machine MSI; a UAC prompt during install is expected. No account, sign-in or server is needed and the app works fully offline.
+Facthory Deck is a desktop presentation app delivered as an MSI that installs for the current user by default (no UAC prompt); an installation for all users is offered in its interactive setup and asks for elevation. No account, sign-in or server is needed and the app works fully offline.
 
 How to test: start Facthory Deck from the Start menu. Create a new presentation or open the built-in sample deck, add a slide, insert a shape and a picture from a file, add a transition, then start the slide show (Esc ends it). Use File > Save As to save a .pptx file and File > Export to create a PDF. Printing is not available in this version; PDF export is the way to print.
 
