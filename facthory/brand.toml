@@ -63,14 +63,14 @@ count = 2
 
 [[rule]]
 why = "The ArtCraft Discord becomes our issue tracker: Help tab and About links"
-files = ["crates/ui-egui/src/dialogs.rs", "crates/ui-egui/src/backstage.rs"]
+files = ["crates/ui-egui/src/dialogs/about.rs", "crates/ui-egui/src/backstage/info.rs"]
 find = 'ui.hyperlink_to("Join our community on Discord", '
 replace = 'ui.hyperlink_to("Report a problem or ask for help", '
 count = 2
 
 [[rule]]
 why = "File backstage: the ArtCraft community link"
-files = "crates/ui-egui/src/backstage.rs"
+files = "crates/ui-egui/src/backstage/files.rs"
 find = 'ui.hyperlink_to("Join the ArtCraft community on Discord", '
 replace = 'ui.hyperlink_to("Report a problem or ask for help", '
 count = 1
@@ -97,7 +97,7 @@ count = 1
 
 [[rule]]
 why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon"
-files = "crates/ui-egui/src/dialogs.rs"
+files = "crates/ui-egui/src/dialogs/about.rs"
 find = '''(?s)/// DeckCraft's mark, drawn in code: a slide card with a play triangle in our orange\.\npub fn paint_logo\(p: &egui::Painter, r: Rect\) \{\n.*?\n\}\n'''
 replace = '''/// Facthory Deck's mark, drawn in code: the app icon (facthory/icons/deck.svg) on its 512 grid.
 pub fn paint_logo(p: &egui::Painter, r: Rect) {
@@ -117,6 +117,39 @@ pub fn paint_logo(p: &egui::Painter, r: Rect) {
     }
 }
 '''
+regex = true
+count = 1
+
+[[rule]]
+why = "Windows: the installer's suite folder (Programs\\ArtCraft\\<app>, Program Files\\ArtCraft\\<app>) is ours, and the installer's own policy check expects the same name"
+files = ["packaging/windows/*.wxs", "packaging/windows/*.wxi", "packaging/windows/*.ps1", "packaging/windows/*.md"]
+find = "ArtCraft"
+replace = "Facthory"
+
+# Upstream's own updater (craft-update, from craft-libs) checks and installs the upstream apps'
+# releases, by their repositories and ai.storyteller.* ids, and carries their names into the binary.
+# It is left out: facthory/update/ is the updater that runs, and facthory/update/updates_ui.rs
+# stands in for upstream's update window ([[copy]] below).
+
+[[rule]]
+why = "No self-update helper of upstream's flow at start"
+files = "apps/deckcraft/src/main.rs"
+find = "    if let Some(done) = craft_update::self_update::finish(&craft_update::suite::DECKCRAFT, &std::env::args_os().skip(1).collect::<Vec<_>>()) {\n        if let Err(e) = done {\n            eprintln!(\"DeckCraft update helper failed: {e}\");\n            std::process::exit(1);\n        }\n        return Ok(());\n    }\n"
+replace = ""
+count = 1
+
+[[rule]]
+why = "... and no craft-update dependency"
+files = ["apps/deckcraft/Cargo.toml", "crates/ui-egui/Cargo.toml"]
+find = "craft-update = { workspace = true }\n"
+replace = ""
+count = 2
+
+[[rule]]
+why = "... in the workspace either"
+files = "Cargo.toml"
+find = '^craft-update = \{ git = "https://github.com/storytold/craft-libs".*\n'
+replace = ""
 regex = true
 count = 1
 
@@ -213,7 +246,7 @@ count = 1
 [[rule]]
 phase = "after"
 why = "About: what it is based on (brand licence: plain-text credit allowed)"
-files = "crates/ui-egui/src/dialogs.rs"
+files = "crates/ui-egui/src/dialogs/about.rs"
 find = 'ui.label("An open-source, clean-room project. Not affiliated with Microsoft.");'
 replace = '''ui.label("An open-source, clean-room project. Not affiliated with Microsoft.");
         ui.label("Based on DeckCraft by the ArtCraft team.");'''
@@ -222,7 +255,7 @@ count = 1
 [[rule]]
 phase = "after"
 why = "About: our copyright, then upstream's, which the licence requires us to keep"
-files = "crates/ui-egui/src/dialogs.rs"
+files = "crates/ui-egui/src/dialogs/about.rs"
 find = '"MIT OR Apache-2.0 · © 2026 ArtCraft Team and the Facthory Deck contributors"'
 replace = '"MIT OR Apache-2.0 · © 2026 Bandpey GmbH · based on DeckCraft, © 2026 ArtCraft Team and the DeckCraft contributors"'
 count = 1
@@ -313,6 +346,11 @@ count = 1
 # ---------------------------------------------------------------------------------------------
 
 [[copy]]
+# Upstream's update window, without its updater (facthory/update/updates_ui.rs).
+from = "update/updates_ui.rs"
+to = "crates/ui-egui/src/dialogs/updates_ui.rs"
+
+[[copy]]
 from = "update/facthory_update.rs"
 to = "apps/facthorydeck/src/facthory_update.rs"
 
@@ -355,6 +393,13 @@ allow = [
   'ported from FilmCraft, same owner and licence',
   # Build inputs used unmodified (Cargo git dependencies), not a product surface.
   'https://github.com/storytold/craft-libs',
+  # Upstream's forks of egui and winit (Cargo git dependencies), and the translations the
+  # Flatpak recipe checks out: build inputs used unmodified.
+  'https://github.com/storytold/egui.git',
+  'https://github.com/storytold/winit.git',
+  'https://github.com/storytold/craft-i18n',
+  # The installer's policy check, shared by upstream's apps, names its siblings' ids (build time).
+  "$policy.id -in 'facthorydeck','filmcraft','soundcraft'",
 ]
 
 # ---------------------------------------------------------------------------------------------
