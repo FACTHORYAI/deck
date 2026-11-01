@@ -14,7 +14,9 @@ Files Facthory adds to upstream's tree, and nothing else:
 | ---- | ---------- |
 | `facthory/brand.toml` | The brand as data: names, app ids, links, publisher, the exact edits, the installer GUID namespace, the mark check |
 | `facthory/rebrand.py` | Applies `brand.toml` to a checkout (`apply`) and checks shipped files for upstream marks (`check`) |
-| `facthory/icons/deck.svg` | The Facthory Deck icon (original artwork) |
+| `facthory/icons/deck.svg` | The Facthory Deck icon: with icons' `presentation` in its Chrome style (MIT, `LICENSE-withicons.txt`), recoloured |
+| `facthory/icons/deck-macos.svg` | The same icon on a light tile, for the macOS files (macOS frames an icon without a tile) |
+| `facthory/icons/LICENSE-withicons.txt` | The icon's MIT licence; `render.py` copies its text into `ATTRIBUTION.md`, and a brand rule appends it to `NOTICE`, which the packages ship |
 | `facthory/icons/render.py` | Renders the icon set (`facthory/icons/app-icon/`, committed) with resvg, and credits it in `ATTRIBUTION.md` |
 | `facthory/sync.py` | Merges the next upstream release (W3), resolving the two known conflicts below |
 | `facthory/README.md` | This list |
@@ -67,7 +69,9 @@ And two upstream files changed:
   app, the CLI's `links` and the MCP server's instructions.
 - **Marks removed**: `docs/brand/` (the ArtCraft name, wordmark and logos) is deleted.
 - **Credits kept**: the About box says "Based on DeckCraft by the ArtCraft team" and keeps
-  upstream's copyright next to ours; `LICENSE-*` and `NOTICE` are never touched;
+  upstream's copyright next to ours; `LICENSE-*` are never touched, and `NOTICE` keeps upstream's
+  text with one addendum at its end, the app icon's MIT notice (the packages ship `NOTICE`, not
+  `ATTRIBUTION.md`);
   `ATTRIBUTION.md` keeps every upstream credit and lists our icon as ours.
 
 Telemetry and crash reporting: DeckCraft has none, so there is nothing to turn off. Updates:
