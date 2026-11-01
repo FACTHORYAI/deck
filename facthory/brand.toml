@@ -23,7 +23,8 @@ macos_svg = "deck-macos.svg"
 author = "with icons contributors; recoloured by Bandpey GmbH"
 source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours"
 licence = "MIT"
-# The licence text, written at the end of ATTRIBUTION.md's Facthory block (which ships).
+# The licence text, written at the end of ATTRIBUTION.md's Facthory block. The packages ship NOTICE,
+# not ATTRIBUTION.md, so a rule further down appends the same text to NOTICE.
 notice = "LICENSE-withicons.txt"
 # Upstream's assets/app-icon/ has neither <base>-macos-512.png nor <base>.svg.
 macos_512 = false
@@ -499,6 +500,14 @@ to = "apps/facthorydeck/src/facthory_update.rs"
 from = "icons/app-icon"
 to = "assets/app-icon"
 replace = true
+
+[[rule]]
+phase = "after"
+why = "DMG window: 256 colours, not 16, so the chrome app icon's gradients do not band (the TIFF grows by a few KB)"
+files = "packaging/macos/dmg/generate.py"
+find = "PALETTE = 16  # colours in background.tiff"
+replace = "PALETTE = 256  # colours in background.tiff"
+count = 1
 
 [[copy]]
 # The DMG window: our colours, title and icon (the release workflow renders it with generate.py).
