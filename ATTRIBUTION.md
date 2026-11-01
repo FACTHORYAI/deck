@@ -3,19 +3,20 @@
 <!-- facthory:begin: Facthory's own files, written by facthory/icons/render.py; see facthory/README.md -->
 | Facthory asset | Author | Source | Licence |
 |---|---|---|---|
-| `facthory/icons/deck.svg` | Bandpey GmbH | original artwork | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/facthorydeck-1024.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/facthorydeck.icns` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/128x128/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/16x16/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/24x24/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/32x32/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/48x48/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
-| `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 |
+| `facthory/icons/deck.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt` | MIT |
+| `facthory/icons/deck-macos.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt` | MIT |
+| `facthory/icons/app-icon/facthorydeck-1024.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/facthorydeck.icns` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/128x128/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/16x16/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/24x24/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/32x32/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/48x48/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
 | `facthory/dmg/background.svg` | @XusBadia (DeckCraft contributors); recoloured and retitled by Bandpey GmbH | derived from DeckCraft's `packaging/macos/dmg/background.svg`; title outlined from Inter SemiBold (OFL-1.1) | MIT OR Apache-2.0 |
 <!-- facthory:end -->
 

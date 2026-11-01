@@ -18,6 +18,11 @@ repository = "https://github.com/storytold/deckcraft"
 [icon]
 svg = "deck.svg"
 base = "facthorydeck"
+# macOS frames an icon that has no tile of its own, so its files come from the icon on a tile.
+macos_svg = "deck-macos.svg"
+author = "with icons contributors; recoloured by Bandpey GmbH"
+source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt`"
+licence = "MIT"
 # Upstream's assets/app-icon/ has neither <base>-macos-512.png nor <base>.svg.
 macos_512 = false
 svg_copy = false
@@ -96,24 +101,24 @@ replace = 'Support: {} (issues), {} (app page), {} (source).'
 count = 1
 
 [[rule]]
-why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon"
+why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon, painted from its render"
 files = "crates/ui-egui/src/dialogs/about.rs"
 find = '''(?s)/// DeckCraft's mark, drawn in code: a slide card with a play triangle in our orange\.\npub fn paint_logo\(p: &egui::Painter, r: Rect\) \{\n.*?\n\}\n'''
-replace = '''/// Facthory Deck's mark, drawn in code: the app icon (facthory/icons/deck.svg) on its 512 grid.
+replace = '''/// Facthory Deck's mark: the app icon (facthory/icons/deck.svg), painted from its 256 px render.
+/// The texture is made once per context and kept in its memory.
 pub fn paint_logo(p: &egui::Painter, r: Rect) {
-    let slate = Color32::from_rgb(0x1E, 0x2A, 0x38);
-    let paper = Color32::from_rgb(0xF4, 0xF1, 0xEA);
-    let amber = Color32::from_rgb(0xF2, 0xB3, 0x3D);
-    let u = r.width() / 512.0;
-    let at = |x: f32, y: f32, w: f32, h: f32| Rect::from_min_size(pos2(r.min.x + x * u, r.min.y + y * u), vec2(w * u, h * u));
-    let round = |radius: f32| CornerRadius::same((radius * u) as u8);
-    p.rect_filled(r, round(112.0), slate);
-    p.rect_filled(at(80.0, 112.0, 352.0, 240.0), round(18.0), paper);
-    p.rect_filled(at(244.0, 352.0, 24.0, 48.0), CornerRadius::ZERO, paper);
-    p.rect_filled(at(176.0, 392.0, 160.0, 24.0), round(12.0), paper);
-    p.rect_filled(at(128.0, 148.0, 128.0, 20.0), round(10.0), slate);
-    for (x, y, h) in [(136.0, 252.0, 68.0), (228.0, 212.0, 108.0), (320.0, 168.0, 152.0)] {
-        p.rect_filled(at(x, y, 56.0, h), round(6.0), amber);
+    let ctx = p.ctx();
+    let id = egui::Id::unique("facthory-deck-logo");
+    let tex = ctx.data(|d| d.get_temp::<egui::TextureHandle>(id)).or_else(|| {
+        let png = include_bytes!("../../../../assets/app-icon/hicolor/256x256/apps/com.facthory.deck.png");
+        let img = deckcraft_render::decode_image(png)?;
+        let size = [img.width() as usize, img.height() as usize];
+        let tex = ctx.load_texture("facthory-deck-logo", egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw()), egui::TextureOptions::LINEAR);
+        ctx.data_mut(|d| d.insert_temp(id, tex.clone()));
+        Some(tex)
+    });
+    if let Some(tex) = tex {
+        p.image(tex.id(), r, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), Color32::WHITE);
     }
 }
 '''
@@ -218,10 +223,10 @@ replace = "Add-Type -Namespace FacthoryDeck -Name Shell"
 count = 1
 
 [[rule]]
-why = "About: our painted logo (below) draws no stroke, so its import goes"
+why = "About: our logo (below) is an image, so the stroke and corner imports go"
 files = "crates/ui-egui/src/dialogs/about.rs"
 find = "use super::{Color32, CornerRadius, Rect, Sense, SlideApp, Stroke, Tokens, Ui, pos2, theme, vec2};"
-replace = "use super::{Color32, CornerRadius, Rect, Sense, SlideApp, Tokens, Ui, pos2, theme, vec2};"
+replace = "use super::{Color32, Rect, Sense, SlideApp, Tokens, Ui, pos2, theme, vec2};"
 count = 1
 
 # ---------------------------------------------------------------------------------------------
@@ -348,7 +353,8 @@ find = '<string>Copyright © the Facthory Deck authors. MIT OR Apache-2.0.</stri
 replace = '<string>Copyright © Bandpey GmbH; based on DeckCraft, copyright © the DeckCraft authors. MIT OR Apache-2.0.</string>'
 count = 1
 
-# The app icon is ours: its attribution rows say so; upstream's icon source document is gone.
+# The app icon is ours (derived from with icons, MIT): its attribution rows say so; upstream's icon
+# source document is gone.
 [[rule]]
 phase = "after"
 files = "ATTRIBUTION.md"
@@ -361,7 +367,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft-1024\.png`, `assets/app-icon/hicolor/\*/apps/ai\.storyteller\.deckcraft\.png` \|.*$'
-replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | Bandpey GmbH | original artwork (`facthory/icons/deck.svg`), rendered by `facthory/icons/render.py` | MIT OR Apache-2.0 | Facthory Deck app icon |'
+replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | `presentation` from with icons (Chrome style), recoloured (`facthory/icons/deck.svg`; on a tile for macOS, `facthory/icons/deck-macos.svg`), rendered by `facthory/icons/render.py` | MIT | Facthory Deck app icon |'
 regex = true
 count = 1
 
@@ -369,7 +375,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft\.icns`, `assets/app-icon/deckcraft\.ico` \|.*$'
-replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0 | macOS and Windows app icons |'
+replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` (macOS) and `facthory/icons/deck.svg` (Windows) by `facthory/icons/render.py` | MIT | macOS and Windows app icons |'
 regex = true
 count = 1
 
@@ -377,7 +383,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/hicolor/scalable/apps/ai\.storyteller\.deckcraft\.svg` \|.*$'
-replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | original artwork, a copy of `facthory/icons/deck.svg` | MIT OR Apache-2.0 | Scalable app icon for Linux desktops (hicolor theme) |'
+replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | a copy of `facthory/icons/deck.svg` (`presentation` from with icons) | MIT | Scalable app icon for Linux desktops (hicolor theme) |'
 regex = true
 count = 1
 
