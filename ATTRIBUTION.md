@@ -3,8 +3,8 @@
 <!-- facthory:begin: Facthory's own files, written by facthory/icons/render.py; see facthory/README.md -->
 | Facthory asset | Author | Source | Licence |
 |---|---|---|---|
-| `facthory/icons/deck.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt` | MIT |
-| `facthory/icons/deck-macos.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt` | MIT |
+| `facthory/icons/deck.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours | MIT |
+| `facthory/icons/deck-macos.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; on a light tile for macOS by Bandpey GmbH | MIT |
 | `facthory/icons/app-icon/facthorydeck-1024.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
 | `facthory/icons/app-icon/facthorydeck.icns` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` by `facthory/icons/render.py` | MIT |
 | `facthory/icons/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
@@ -18,6 +18,32 @@
 | `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
 | `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
 | `facthory/dmg/background.svg` | @XusBadia (DeckCraft contributors); recoloured and retitled by Bandpey GmbH | derived from DeckCraft's `packaging/macos/dmg/background.svg`; title outlined from Inter SemiBold (OFL-1.1) | MIT OR Apache-2.0 |
+
+The app icon's licence (MIT), from `facthory/icons/LICENSE-withicons.txt`:
+
+```text
+MIT License
+
+Copyright (c) 2026 with icons contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 <!-- facthory:end -->
 
 Every asset DeckCraft includes, bundles, embeds at build time or shows in its documentation, with

@@ -21,8 +21,10 @@ base = "facthorydeck"
 # macOS frames an icon that has no tile of its own, so its files come from the icon on a tile.
 macos_svg = "deck-macos.svg"
 author = "with icons contributors; recoloured by Bandpey GmbH"
-source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; licence text in `facthory/icons/LICENSE-withicons.txt`"
+source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours"
 licence = "MIT"
+# The licence text, written at the end of ATTRIBUTION.md's Facthory block (which ships).
+notice = "LICENSE-withicons.txt"
 # Upstream's assets/app-icon/ has neither <base>-macos-512.png nor <base>.svg.
 macos_512 = false
 svg_copy = false
@@ -39,7 +41,8 @@ licence = "MIT OR Apache-2.0"
 # fonts' family names (crates/render/tests/fixtures/colr-squares.ttf,
 # crates/fonts/tests/fixtures/legacy-*.ttf). Tests only.
 keep = ["DeckCraft Colr Squares", "DeckCraft Legacy"]
-# Never touched: upstream's licences and notices stay exactly as written (Apache-2.0 §4).
+# Tokens never touch these: upstream's licences and notices stay as written (Apache-2.0 §4). NOTICE
+# only gains an addendum at its end, for the app icon's licence (rule below; §4(d) allows it).
 skip = ["LICENSE-APACHE", "LICENSE-MIT", "NOTICE", ".github"]
 # Credit files. No token here applies to them (none is credits = true): contributors.json names
 # upstream's repository on purpose, and ATTRIBUTION.md's icon rows are rewritten by the rules
@@ -101,19 +104,28 @@ replace = 'Support: {} (issues), {} (app page), {} (source).'
 count = 1
 
 [[rule]]
-why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon, painted from its render"
+why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon, painted from its renders"
 files = "crates/ui-egui/src/dialogs/about.rs"
 find = '''(?s)/// DeckCraft's mark, drawn in code: a slide card with a play triangle in our orange\.\npub fn paint_logo\(p: &egui::Painter, r: Rect\) \{\n.*?\n\}\n'''
-replace = '''/// Facthory Deck's mark: the app icon (facthory/icons/deck.svg), painted from its 256 px render.
-/// The texture is made once per context and kept in its memory.
+replace = '''/// Facthory Deck's mark: the app icon (facthory/icons/deck.svg), painted from the smallest of its
+/// renders at least as large as the mark on screen. The GPU's textures have no mipmaps, so a render
+/// twice the size or more would alias. Each texture is made once and kept in the context's memory.
 pub fn paint_logo(p: &egui::Painter, r: Rect) {
+    const RENDERS: [(u16, &[u8]); 5] = [
+        (32, include_bytes!("../../../../assets/app-icon/hicolor/32x32/apps/com.facthory.deck.png")),
+        (48, include_bytes!("../../../../assets/app-icon/hicolor/48x48/apps/com.facthory.deck.png")),
+        (64, include_bytes!("../../../../assets/app-icon/hicolor/64x64/apps/com.facthory.deck.png")),
+        (128, include_bytes!("../../../../assets/app-icon/hicolor/128x128/apps/com.facthory.deck.png")),
+        (256, include_bytes!("../../../../assets/app-icon/hicolor/256x256/apps/com.facthory.deck.png")),
+    ];
     let ctx = p.ctx();
-    let id = egui::Id::unique("facthory-deck-logo");
+    let px = r.width() * ctx.pixels_per_point();
+    let (side, png) = RENDERS.into_iter().find(|&(side, _)| f32::from(side) >= px).unwrap_or(RENDERS[RENDERS.len() - 1]);
+    let id = egui::Id::unique(("facthory-deck-logo", side));
     let tex = ctx.data(|d| d.get_temp::<egui::TextureHandle>(id)).or_else(|| {
-        let png = include_bytes!("../../../../assets/app-icon/hicolor/256x256/apps/com.facthory.deck.png");
         let img = deckcraft_render::decode_image(png)?;
         let size = [img.width() as usize, img.height() as usize];
-        let tex = ctx.load_texture("facthory-deck-logo", egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw()), egui::TextureOptions::LINEAR);
+        let tex = ctx.load_texture(format!("facthory-deck-logo-{side}"), egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw()), egui::TextureOptions::LINEAR);
         ctx.data_mut(|d| d.insert_temp(id, tex.clone()));
         Some(tex)
     });
@@ -367,7 +379,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft-1024\.png`, `assets/app-icon/hicolor/\*/apps/ai\.storyteller\.deckcraft\.png` \|.*$'
-replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | `presentation` from with icons (Chrome style), recoloured (`facthory/icons/deck.svg`; on a tile for macOS, `facthory/icons/deck-macos.svg`), rendered by `facthory/icons/render.py` | MIT | Facthory Deck app icon |'
+replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | `presentation` from with icons (Chrome style), recoloured (`facthory/icons/deck.svg`), rendered by `facthory/icons/render.py` | MIT | Facthory Deck app icon |'
 regex = true
 count = 1
 
@@ -385,6 +397,57 @@ files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/hicolor/scalable/apps/ai\.storyteller\.deckcraft\.svg` \|.*$'
 replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | a copy of `facthory/icons/deck.svg` (`presentation` from with icons) | MIT | Scalable app icon for Linux desktops (hicolor theme) |'
 regex = true
+count = 1
+
+[[rule]]
+phase = "after"
+why = "NOTICE ships in every package and ATTRIBUTION.md does not, so the app icon's MIT notice is appended there; upstream's text above it is unchanged"
+files = "NOTICE"
+find = '\Z'
+replace = '''
+
+Facthory Deck addendum (Bandpey GmbH; the notice above is upstream's, unchanged)
+
+- The Facthory Deck app icon (assets/app-icon/, also painted in the app) is `presentation` from
+  with icons in its Chrome style, https://github.com/withevergrow/withicons at commit 996cc78,
+  recoloured by Bandpey GmbH. MIT License, Copyright (c) 2026 with icons contributors.
+
+  MIT License
+
+  Copyright (c) 2026 with icons contributors
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+'''
+regex = true
+count = 1
+
+[[rule]]
+phase = "after"
+why = "macOS: the Dock keeps the bundle's .icns (the icon on its tile); an empty icon stops eframe from setting the tile-less render or its default"
+files = "apps/facthorydeck/src/main.rs"
+find = '''fn app_icon() -> Option<egui::IconData> {
+'''
+replace = '''fn app_icon() -> Option<egui::IconData> {
+    if cfg!(target_os = "macos") {
+        return Some(egui::IconData::default());
+    }
+'''
 count = 1
 
 # The updater (facthory/update/facthory_update.rs, copied below): its module and its calls from
