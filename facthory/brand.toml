@@ -261,24 +261,6 @@ find = "${GITHUB_ACTOR:-storytold}"
 replace = "${GITHUB_ACTOR:-facthory}"
 count = 1
 
-# Upstream's HEVC decoder trips a lint that Rust 1.100's clippy added (needless_bool), and the
-# shared gate denies warnings. Upstream replaced this whole crate with craft-video after the
-# release we merge, so there is no fix of theirs to take; the guard keeps its shape and says why.
-[[rule]]
-why = "Rust 1.100 clippy: the deblocking guard's last condition"
-files = "crates/hevc/src/filter.rs"
-find = """
-        if !pic.pps.loop_filter_across_tiles && pic.layout.tile_id[pic.layout.rs_to_ts[nrs] as usize] != pic.layout.tile_id[cur_ts as usize] {
-            return false;
-        }
-        true
-"""
-replace = """
-        // The remaining tile check, written as the value it yields (clippy::needless_bool, 1.100).
-        !(!pic.pps.loop_filter_across_tiles && pic.layout.tile_id[pic.layout.rs_to_ts[nrs] as usize] != pic.layout.tile_id[cur_ts as usize])
-"""
-count = 1
-
 # A test of the About page looks for the Discord link under upstream's label; ours is the issue tracker.
 [[rule]]
 why = "The About-page test looks for our label of the community link"
