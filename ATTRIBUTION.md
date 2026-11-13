@@ -3,47 +3,36 @@
 <!-- facthory:begin: Facthory's own files, written by facthory/icons/render.py; see facthory/README.md -->
 | Facthory asset | Author | Source | Licence |
 |---|---|---|---|
-| `facthory/icons/deck.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours | MIT |
-| `facthory/icons/deck-macos.svg` | with icons contributors; recoloured by Bandpey GmbH | `presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours; on a light tile for macOS by Bandpey GmbH | MIT |
-| `facthory/icons/app-icon/facthorydeck-1024.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/facthorydeck.icns` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/128x128/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/16x16/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/24x24/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/32x32/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/48x48/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
-| `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT |
+| `facthory/icons/deck.svg` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified) | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/deck-macos.svg` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified) | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/deck-small.svg` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified) | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/deck-macos-small.svg` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified) | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/facthorydeck-1024.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/facthorydeck-logo-dark.png` | Bandpey GmbH | rendered from `facthory/icons/brand/mark-mono.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/facthorydeck-logo-light.png` | Bandpey GmbH | rendered from `facthory/icons/brand/mark.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/facthorydeck.icns` | Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/128x128/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/16x16/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/24x24/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/32x32/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/48x48/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/512x512/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/64x64/apps/com.facthory.deck.png` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `facthory/icons/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | rendered from `facthory/icons/deck.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `assets/app-icon/facthorydeck-logo-dark.png` | Bandpey GmbH | the branded tree's copy of `facthory/icons/app-icon/facthorydeck-logo-dark.png`, rendered from `facthory/icons/brand/mark-mono.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
+| `assets/app-icon/facthorydeck-logo-light.png` | Bandpey GmbH | the branded tree's copy of `facthory/icons/app-icon/facthorydeck-logo-light.png`, rendered from `facthory/icons/brand/mark.svg` by `facthory/icons/render.py` | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
 | `facthory/dmg/background.svg` | @XusBadia (DeckCraft contributors); recoloured and retitled by Bandpey GmbH | derived from DeckCraft's `packaging/macos/dmg/background.svg`; title outlined from Inter SemiBold (OFL-1.1) | MIT OR Apache-2.0 |
+| `facthory/icons/brand/mark.svg` | Bandpey GmbH | Facthory's logo (the mark, for light grounds), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/brand/mark-mono.svg` | Bandpey GmbH | Facthory's logo (the mark in white and greys, for dark grounds), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/brand/mark.png` | Bandpey GmbH | Facthory's logo (the mark, 960 x 1016 pixels), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/brand/word-mark.svg` | Bandpey GmbH | Facthory's logo (the mark beside the name), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/brand/word-mark-only.svg` | Bandpey GmbH | Facthory's logo (the lettering alone), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/brand/word-mark-only-mono.svg` | Bandpey GmbH | Facthory's logo (the lettering alone, for dark grounds), copied unmodified from the Facthory Design System | Facthory trademark, all rights reserved: not open source; usable unmodified only |
+| `facthory/icons/proof/deck.png` | Bandpey GmbH | contact sheet of the icon candidates beside reference shapes, drawn by `facthory/icons/proof.py`; contains Facthory's mark | MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH |
 
-The app icon's licence (MIT), from `facthory/icons/LICENSE-withicons.txt`:
-
-```text
-MIT License
-
-Copyright (c) 2026 with icons contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+Facthory's marks (`facthory/icons/brand/`) are the brand of Bandpey GmbH, copied unmodified from the Facthory Design System. They are not open source and not covered by this project's MIT OR Apache-2.0 licence: they may be used unmodified only, to name Facthory's own builds, and a logo is never recoloured, stretched, cropped or redrawn. The glyphs and tiles around the mark in the app icons are original work by Bandpey GmbH, under this project's licence.
 <!-- facthory:end -->
 
 Every asset DeckCraft includes, bundles, embeds at build time or shows in its documentation, with

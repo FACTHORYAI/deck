@@ -16,16 +16,17 @@ team = "ArtCraft team"
 repository = "https://github.com/storytold/deckcraft"
 
 [icon]
+# Composed by facthory/icons/compose.py from Facthory's mark (icons/brand/, unmodified) and an
+# original glyph; render.py renders the platform files from these four.
 svg = "deck.svg"
 base = "facthorydeck"
-# macOS frames an icon that has no tile of its own, so its files come from the icon on a tile.
 macos_svg = "deck-macos.svg"
-author = "with icons contributors; recoloured by Bandpey GmbH"
-source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours"
-licence = "MIT"
-# The licence text, written at the end of ATTRIBUTION.md's Facthory block. The packages ship NOTICE,
-# not ATTRIBUTION.md, so a rule further down appends the same text to NOTICE.
-notice = "LICENSE-withicons.txt"
+small_svg = "deck-small.svg"
+macos_small_svg = "deck-macos-small.svg"
+author = "Bandpey GmbH"
+source = "original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified)"
+licence = "MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH"
+note = """Facthory's marks (`facthory/icons/brand/`) are the brand of Bandpey GmbH, copied unmodified from the Facthory Design System. They are not open source and not covered by this project's MIT OR Apache-2.0 licence: they may be used unmodified only, to name Facthory's own builds, and a logo is never recoloured, stretched, cropped or redrawn. The glyphs and tiles around the mark in the app icons are original work by Bandpey GmbH, under this project's licence."""
 # Upstream's assets/app-icon/ has neither <base>-macos-512.png nor <base>.svg.
 macos_512 = false
 svg_copy = false
@@ -36,6 +37,48 @@ path = "dmg/background.svg"
 author = "@XusBadia (DeckCraft contributors); recoloured and retitled by Bandpey GmbH"
 source = "derived from DeckCraft's `packaging/macos/dmg/background.svg`; title outlined from Inter SemiBold (OFL-1.1)"
 licence = "MIT OR Apache-2.0"
+
+[[asset]]
+path = "icons/brand/mark.svg"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the mark, for light grounds), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/brand/mark-mono.svg"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the mark in white and greys, for dark grounds), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/brand/mark.png"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the mark, 960 x 1016 pixels), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/brand/word-mark.svg"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the mark beside the name), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/brand/word-mark-only.svg"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the lettering alone), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/brand/word-mark-only-mono.svg"
+author = "Bandpey GmbH"
+source = "Facthory's logo (the lettering alone, for dark grounds), copied unmodified from the Facthory Design System"
+licence = "Facthory trademark, all rights reserved: not open source; usable unmodified only"
+
+[[asset]]
+path = "icons/proof/deck.png"
+author = "Bandpey GmbH"
+source = "contact sheet of the icon candidates beside reference shapes, drawn by `facthory/icons/proof.py`; contains Facthory's mark"
+licence = "MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH"
 
 [files]
 # Names fixed inside binary fixtures, which the text naming them must keep matching: the test
@@ -105,33 +148,31 @@ replace = 'Support: {} (issues), {} (app page), {} (source).'
 count = 1
 
 [[rule]]
-why = "Upstream's mark painted in code (About, Start screen, Account page) becomes our app icon, painted from its renders"
+why = "Upstream's mark painted in code (About, Start screen, Account page) becomes Facthory's mark, in the theme's variant"
 files = "crates/ui-egui/src/dialogs/about.rs"
 find = '''(?s)/// DeckCraft's mark, drawn in code: a slide card with a play triangle in our orange\.\npub fn paint_logo\(p: &egui::Painter, r: Rect\) \{\n.*?\n\}\n'''
-replace = '''/// Facthory Deck's mark: the app icon (facthory/icons/deck.svg), painted from the smallest of its
-/// renders at least as large as the mark on screen. The GPU's textures have no mipmaps, so a render
-/// twice the size or more would alias. Each texture is made once and kept in the context's memory.
+replace = '''/// Facthory's mark, painted from its renders (facthory/icons/brand/mark.svg on a light theme, mark-mono.svg
+/// on a dark one) in its own proportions, centred in `r`. Each texture is made once and kept in the
+/// context's memory.
 pub fn paint_logo(p: &egui::Painter, r: Rect) {
-    const RENDERS: [(u16, &[u8]); 5] = [
-        (32, include_bytes!("../../../../assets/app-icon/hicolor/32x32/apps/com.facthory.deck.png")),
-        (48, include_bytes!("../../../../assets/app-icon/hicolor/48x48/apps/com.facthory.deck.png")),
-        (64, include_bytes!("../../../../assets/app-icon/hicolor/64x64/apps/com.facthory.deck.png")),
-        (128, include_bytes!("../../../../assets/app-icon/hicolor/128x128/apps/com.facthory.deck.png")),
-        (256, include_bytes!("../../../../assets/app-icon/hicolor/256x256/apps/com.facthory.deck.png")),
-    ];
+    const LIGHT: &[u8] = include_bytes!("../../../../assets/app-icon/facthorydeck-logo-light.png");
+    const DARK: &[u8] = include_bytes!("../../../../assets/app-icon/facthorydeck-logo-dark.png");
     let ctx = p.ctx();
-    let px = r.width() * ctx.pixels_per_point();
-    let (side, png) = RENDERS.into_iter().find(|&(side, _)| f32::from(side) >= px).unwrap_or(RENDERS[RENDERS.len() - 1]);
-    let id = egui::Id::unique(("facthory-deck-logo", side));
+    let dark = ctx.style().visuals.dark_mode;
+    let id = egui::Id::unique(if dark { "facthory-deck-logo-dark" } else { "facthory-deck-logo-light" });
     let tex = ctx.data(|d| d.get_temp::<egui::TextureHandle>(id)).or_else(|| {
-        let img = deckcraft_render::decode_image(png)?;
+        let img = deckcraft_render::decode_image(if dark { DARK } else { LIGHT })?;
         let size = [img.width() as usize, img.height() as usize];
-        let tex = ctx.load_texture(format!("facthory-deck-logo-{side}"), egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw()), egui::TextureOptions::LINEAR);
+        let tex = ctx.load_texture(if dark { "facthory-deck-logo-dark" } else { "facthory-deck-logo-light" }, egui::ColorImage::from_rgba_unmultiplied(size, img.as_raw()), egui::TextureOptions::LINEAR);
         ctx.data_mut(|d| d.insert_temp(id, tex.clone()));
         Some(tex)
     });
     if let Some(tex) = tex {
-        p.image(tex.id(), r, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), Color32::WHITE);
+        let size = tex.size_vec2();
+        if size.x > 0.0 && size.y > 0.0 {
+            let fit = Rect::from_center_size(r.center(), size * (r.width() / size.x).min(r.height() / size.y));
+            p.image(tex.id(), fit, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), Color32::WHITE);
+        }
     }
 }
 '''
@@ -201,6 +242,57 @@ replace = """
 """
 count = 1
 
+# Notarization with the App Store Connect API key of Bandpey GmbH's other releases, not an Apple
+# account's app-specific password: package.sh reads the key's file, id and issuer (the release
+# workflow writes the .p8 under $RUNNER_TEMP, mode 600, and removes it again).
+[[rule]]
+why = "Notarization takes an API key: the script's header"
+files = "packaging/macos/package.sh"
+find = '''# Notarization (env; all three needed, and a real identity):
+#   APPLE_ID, APPLE_PASSWORD (app-specific password), APPLE_TEAM_ID
+'''
+replace = '''# Notarization (env; all three needed, and a real identity), with an App Store Connect API key:
+#   NOTARY_KEY_FILE (the .p8), NOTARY_KEY_ID, NOTARY_ISSUER
+'''
+count = 1
+
+[[rule]]
+why = "... the condition"
+files = "packaging/macos/package.sh"
+find = '''elif [[ -n "${APPLE_ID:-}" ]] && [[ -n "${APPLE_PASSWORD:-}" ]] && [[ -n "${APPLE_TEAM_ID:-}" ]]; then
+  NOTARIZE=1
+else
+  warn "macOS: APPLE_ID / APPLE_PASSWORD / APPLE_TEAM_ID incomplete; signed but not notarized"
+fi
+'''
+replace = '''elif [[ -f "${NOTARY_KEY_FILE:-}" ]] && [[ -n "${NOTARY_KEY_ID:-}" ]] && [[ -n "${NOTARY_ISSUER:-}" ]]; then
+  NOTARIZE=1
+else
+  warn "macOS: NOTARY_KEY_FILE / NOTARY_KEY_ID / NOTARY_ISSUER incomplete; signed but not notarized"
+fi
+'''
+count = 1
+
+[[rule]]
+why = "... the submission"
+files = "packaging/macos/package.sh"
+find = '''  out="$(xcrun notarytool submit "$file" --apple-id "$APPLE_ID" --password "$APPLE_PASSWORD" \
+    --team-id "$APPLE_TEAM_ID" --wait --timeout 1h --output-format json)" || true
+'''
+replace = '''  out="$(xcrun notarytool submit "$file" --key "$NOTARY_KEY_FILE" --key-id "$NOTARY_KEY_ID" \
+    --issuer "$NOTARY_ISSUER" --wait --timeout 1h --output-format json)" || true
+'''
+count = 1
+
+[[rule]]
+why = "... and the log of a refusal"
+files = "packaging/macos/package.sh"
+find = '''      xcrun notarytool log "$id" --apple-id "$APPLE_ID" --password "$APPLE_PASSWORD" --team-id "$APPLE_TEAM_ID" || true
+'''
+replace = '''      xcrun notarytool log "$id" --key "$NOTARY_KEY_FILE" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER" || true
+'''
+count = 1
+
 # Upstream's own updater (craft-update, from craft-libs) checks and installs the upstream apps'
 # releases, by their repositories and ai.storyteller.* ids, and carries their names into the binary.
 # It is left out: facthory/update/ is the updater that runs, and facthory/update/updates_ui.rs
@@ -209,8 +301,16 @@ count = 1
 [[rule]]
 why = "No self-update helper of upstream's flow at start"
 files = "apps/deckcraft/src/main.rs"
-find = "    if let Some(done) = craft_update::self_update::finish(&craft_update::suite::DECKCRAFT, &std::env::args_os().skip(1).collect::<Vec<_>>()) {\n        if let Err(e) = done {\n            eprintln!(\"DeckCraft update helper failed: {e}\");\n            std::process::exit(1);\n        }\n        return Ok(());\n    }\n"
+find = "    if let Some(done) = craft_update::self_update::finish(&deckcraft_ui_egui::UPDATE_APP, &std::env::args_os().skip(1).collect::<Vec<_>>()) {\n        if let Err(e) = done {\n            eprintln!(\"DeckCraft update helper failed: {e}\");\n            std::process::exit(1);\n        }\n        return Ok(());\n    }\n"
 replace = ""
+count = 1
+
+[[rule]]
+why = "... nor upstream's description of its app for craft-update"
+files = "crates/ui-egui/src/lib.rs"
+find = '''(?s)/// DeckCraft as craft-update knows it.*?\n};\n\n'''
+replace = ""
+regex = true
 count = 1
 
 [[rule]]
@@ -380,7 +480,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft-1024\.png`, `assets/app-icon/hicolor/\*/apps/ai\.storyteller\.deckcraft\.png` \|.*$'
-replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | `presentation` from with icons (Chrome style), recoloured (`facthory/icons/deck.svg`), rendered by `facthory/icons/render.py` | MIT | Facthory Deck app icon |'
+replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around the Facthory mark (`facthory/icons/brand/mark.svg`, unmodified), rendered by `facthory/icons/render.py` | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | Facthory Deck app icon |'
 regex = true
 count = 1
 
@@ -388,7 +488,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft\.icns`, `assets/app-icon/deckcraft\.ico` \|.*$'
-replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` (macOS) and `facthory/icons/deck.svg` (Windows) by `facthory/icons/render.py` | MIT | macOS and Windows app icons |'
+replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` (macOS) and `facthory/icons/deck.svg` (Windows) by `facthory/icons/render.py` | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | macOS and Windows app icons |'
 regex = true
 count = 1
 
@@ -396,44 +496,24 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/hicolor/scalable/apps/ai\.storyteller\.deckcraft\.svg` \|.*$'
-replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | a copy of `facthory/icons/deck.svg` (`presentation` from with icons) | MIT | Scalable app icon for Linux desktops (hicolor theme) |'
+replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | a copy of `facthory/icons/deck.svg`, drawn in code around the Facthory mark | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | Scalable app icon for Linux desktops (hicolor theme) |'
 regex = true
 count = 1
 
 [[rule]]
 phase = "after"
-why = "NOTICE ships in every package and ATTRIBUTION.md does not, so the app icon's MIT notice is appended there; upstream's text above it is unchanged"
+why = "NOTICE ships in every package and ATTRIBUTION.md does not, so the note on Facthory's marks is appended there; upstream's text above it is unchanged"
 files = "NOTICE"
 find = '\Z'
 replace = '''
 
 Facthory Deck addendum (Bandpey GmbH; the notice above is upstream's, unchanged)
 
-- The Facthory Deck app icon (assets/app-icon/, also painted in the app) is `presentation` from
-  with icons in its Chrome style, https://github.com/withevergrow/withicons at commit 996cc78,
-  recoloured by Bandpey GmbH. MIT License, Copyright (c) 2026 with icons contributors.
-
-  MIT License
-
-  Copyright (c) 2026 with icons contributors
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
+- The Facthory Deck app icon (assets/app-icon/, also painted in the app) is original artwork by
+  Bandpey GmbH around Facthory's mark, under MIT OR Apache-2.0 except for the mark itself.
+  Facthory's marks (the logo files under assets/app-icon/*-logo-*.png, and the mark inside the
+  icons) are the trademark of Bandpey GmbH. They are not open source: they may be used unmodified
+  only, to name Facthory's own builds, and are never recoloured, stretched, cropped or redrawn.
 '''
 regex = true
 count = 1

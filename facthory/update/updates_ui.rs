@@ -24,6 +24,9 @@ pub(crate) fn request_check(app: &mut SlideApp) {
 
 pub(crate) fn tick(_app: &mut SlideApp, _ctx: &egui::Context) {}
 
+/// Upstream starts the helper of a ready update here; `facthory_update::on_exit` installs ours.
+pub(crate) fn start_pending_update(_app: &mut SlideApp) {}
+
 pub(crate) fn show(app: &mut SlideApp, ctx: &egui::Context) {
     if std::mem::take(&mut app.updates_rt.open_releases) {
         ctx.open_url(egui::OpenUrl::new_tab(RELEASES));

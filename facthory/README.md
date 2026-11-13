@@ -14,10 +14,10 @@ Files Facthory adds to upstream's tree, and nothing else:
 | ---- | ---------- |
 | `facthory/brand.toml` | The brand as data: names, app ids, links, publisher, the exact edits, the installer GUID namespace, the mark check |
 | `facthory/rebrand.py` | Applies `brand.toml` to a checkout (`apply`) and checks shipped files for upstream marks (`check`) |
-| `facthory/icons/deck.svg` | The Facthory Deck icon: with icons' `presentation` in its Chrome style (MIT, `LICENSE-withicons.txt`), recoloured |
-| `facthory/icons/deck-macos.svg` | The same icon on a light tile, for the macOS files (macOS frames an icon without a tile) |
-| `facthory/icons/LICENSE-withicons.txt` | The icon's MIT licence; `render.py` copies its text into `ATTRIBUTION.md`, and a brand rule appends it to `NOTICE`, which the packages ship |
-| `facthory/icons/render.py` | Renders the icon set (`facthory/icons/app-icon/`, committed) with resvg, and credits it in `ATTRIBUTION.md` |
+| `facthory/icons/brand/` | Facthory's own marks (mark, mono mark, word marks), unmodified from the Facthory Design System; a logo is never recoloured, stretched, cropped or redrawn |
+| `facthory/icons/compose.py` | Draws the app icon from the mark and an original Deck glyph, on a light tile: `deck.svg` (Windows, Linux), `deck-macos.svg` (Apple's grid, 824 of 1024, with its shadow) and their `-small` forms for 16 to 32 pixels |
+| `facthory/icons/render.py` | Renders the icon set (`facthory/icons/app-icon/`, committed: `.icns`, `.ico`, hicolor PNGs, the scalable icon, and the mark in a light and a dark file) with resvg, and credits it in `ATTRIBUTION.md` |
+| `facthory/icons/proof.py`, `facthory/icons/proof/` | The contact sheet of the icon candidates beside reference shapes, light and dark grounds, at 2x |
 | `facthory/sync.py` | Merges the next upstream release (W3), resolving the two known conflicts below |
 | `facthory/README.md` | This list |
 | `facthory/.gitignore` | Keeps Python's bytecode out of the repository |
@@ -26,6 +26,7 @@ Files Facthory adds to upstream's tree, and nothing else:
 | `.github/workflows/upstream-sync.yml` | Every three hours: merge the next upstream release on `sync/<tag>`, open its pull request, merge it once the checks `main` requires pass |
 | `.github/workflows/facthory-release.yml` | Releases with no person: on `main`, a version without a release builds, signs, install-checks and publishes `v<version>`. Every pull request builds and install-checks unsigned; `main` requires its `release` check |
 | `facthory/tag_commit.sh` | The commit a release tag points at, for `facthory-release.yml`; any lookup error stops the run instead of reading as no tag |
+| `facthory/signing_preflight.py`, `facthory/test_signing_preflight.py` | Before any build of a signing run, checks that every secret of the environment `release` is set and well formed (names only in the log), with its tests |
 | `facthory/release.py` | Collects a release's files and writes `SHA256SUMS`, the update feed `latest.json` (with its rollout) and the notes |
 | `facthory/install_check.py` | Installs a release's files on macOS, Windows or Linux as a user would, over the newest release's, and checks versions and signatures |
 | `facthory/downloads.sh` | Serves a release's files and the update feed from `downloads.facthory.com` (Cloudflare R2), for the release and rollout workflows; the feed only once every file it names is served |
@@ -91,9 +92,11 @@ and runs upstream's packaging scripts, which sign with the secrets of the enviro
 
 | Platform | Files | Signing |
 | -------- | ----- | ------- |
-| macOS | `facthorydeck-<v>-macos-universal.dmg`, CLI zip | Developer ID, notarized and stapled |
+| macOS | `facthorydeck-<v>-macos-universal.dmg`, CLI zip | Developer ID, notarized with an App Store Connect API key, stapled |
 | Windows | `facthorydeck-<v>-windows-x64.msi` and `-arm64.msi`, portable zips | Authenticode |
 | Linux | AppImage (with `.zsync`), `.deb`, `.rpm`, `.tar.gz`; x86_64 and aarch64 | SHA-256 sums |
+
+In a run that signs, a `preflight` job first checks every secret of the environment (`facthory/signing_preflight.py`: the certificate opens and names Bandpey GmbH's team, the API key parses, the Azure values name the signing account) and every build waits for it.
 
 Then `facthory/install_check.py` installs each platform's files on a machine of that platform,
 as a user would: the DMG's app and the CLI on macOS; the MSI for each architecture on Windows,
@@ -199,5 +202,13 @@ marks the tokens miss fail the check.
 
 ```sh
 cargo install resvg
-python3 facthory/icons/render.py
+python3 facthory/icons/compose.py --product deck --variant a   # draws the four SVGs
+python3 facthory/icons/render.py                               # renders app-icon/, credits it
+python3 facthory/icons/proof.py --product deck                  # the contact sheet (needs Pillow)
 ```
+
+The icon is a light tile, Facthory's mark and the product's own glyph: the mark is placed
+unmodified and uniformly scaled, never recoloured, stretched, cropped or redrawn. On macOS the
+body is 824 of the 1024 canvas (Apple's grid); on Windows and Linux the same tile fills 960 of it
+with a hairline edge, so it holds on a white ground. At 24 pixels and under (32 on macOS) the hero
+alone is drawn, larger.

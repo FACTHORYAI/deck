@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png" width="128" height="128" alt="Facthory Deck icon: a chrome presentation board in the Deck colour">
+  <img src="../facthory/icons/app-icon/hicolor/256x256/apps/com.facthory.deck.png" width="128" height="128" alt="Facthory Deck icon: the Facthory mark on a light tile, with a slide badge">
 </p>
 
 # Facthory Deck
