@@ -160,7 +160,7 @@ pub fn paint_logo(p: &egui::Painter, r: Rect) {
     const LIGHT: &[u8] = include_bytes!("../../../../assets/app-icon/facthorydeck-logo-light.png");
     const DARK: &[u8] = include_bytes!("../../../../assets/app-icon/facthorydeck-logo-dark.png");
     let ctx = p.ctx();
-    let dark = ctx.style().visuals.dark_mode;
+    let dark = ctx.global_style().visuals.dark_mode;
     let id = egui::Id::unique(if dark { "facthory-deck-logo-dark" } else { "facthory-deck-logo-light" });
     let tex = ctx.data(|d| d.get_temp::<egui::TextureHandle>(id)).or_else(|| {
         let img = deckcraft_render::decode_image(if dark { DARK } else { LIGHT })?;
