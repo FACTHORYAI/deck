@@ -34,17 +34,14 @@ impl Class {
 /// prefix.
 pub const TABLE: &[(&str, Class)] = &[
     ("geom", Class::Layer(0)),
-    // Codecs and containers (ported from FilmCraft): L0 standalone leaves, L1 codecs over
-    // `bitstream`, and `media` (probe, decode, playback mixer) at L2.
+    // Video codecs (ported from FilmCraft): `bitstream` is an L0 standalone leaf, the codecs sit
+    // over it at L1, and `media` (probe, decode, playback mixer) at L2. Containers and the Opus
+    // decoder come from craft-libs (craft-media, craft-audio).
     ("bitstream", Class::Standalone),
-    ("matroska", Class::Standalone),
-    ("ogg", Class::Standalone),
-    ("opus", Class::Standalone),
     ("h264", Class::Layer(1)),
     ("hevc", Class::Layer(1)),
     ("vp9", Class::Layer(1)),
     ("av1", Class::Layer(1)),
-    ("isobmff", Class::Layer(1)),
     ("media", Class::Layer(2)),
     ("color", Class::Layer(0)),
     // WMF/EMF reader (ported from WordCraft).
@@ -183,11 +180,11 @@ pub fn check(crates: &[Crate]) -> Vec<Violation> {
                 match classify(&d.name) {
                     // Unregistered deps are reported on their own entry.
                     None => {}
-                    Some(Class::Testkit) => {
-                        if d.kind != DepKind::Dev {
-                            out.push(Violation::TestkitAsNormalDep { krate: c.name.clone() });
-                        }
+                    Some(Class::Testkit) if d.kind != DepKind::Dev => {
+                        out.push(Violation::TestkitAsNormalDep { krate: c.name.clone() });
                     }
+                    // Test support is allowed as a dev-dependency, regardless of its layer.
+                    Some(Class::Testkit) => {}
                     Some(dc) => {
                         let to = dc.layer().unwrap_or(u8::MAX);
                         let dev_ok = d.kind == DepKind::Dev && DEV_EXCEPTIONS.contains(&(short_name(&c.name), short_name(&d.name)));

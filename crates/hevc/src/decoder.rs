@@ -160,22 +160,35 @@ impl Decoder {
     pub fn configure_hvcc(&mut self, hvcc: &[u8]) -> Result<()> {
         ensure!(hvcc.len() >= 23, "hvcC too short");
         ensure!(hvcc[0] == 1, "unsupported hvcC version {}", hvcc[0]);
-        self.nal_length_size = Some((hvcc[21] & 3) as usize + 1);
         let num_arrays = hvcc[22] as usize;
-        let mut pos = 23;
-        for _ in 0..num_arrays {
-            ensure!(pos + 3 <= hvcc.len(), "hvcC truncated");
-            let n = u16::from_be_bytes([hvcc[pos + 1], hvcc[pos + 2]]) as usize;
-            pos += 3;
-            for _ in 0..n {
-                ensure!(pos + 2 <= hvcc.len(), "hvcC truncated");
-                let len = u16::from_be_bytes([hvcc[pos], hvcc[pos + 1]]) as usize;
-                pos += 2;
-                ensure!(pos + len <= hvcc.len(), "hvcC truncated");
-                self.handle_nal(&hvcc[pos..pos + len], 0)?;
-                pos += len;
+        for pass in 0..2 {
+            let mut pos = 23;
+            for _ in 0..num_arrays {
+                ensure!(pos <= hvcc.len() && hvcc.len() - pos >= 3, "hvcC truncated");
+                let array_type = hvcc[pos] & 0x3f;
+                let n = u16::from_be_bytes([hvcc[pos + 1], hvcc[pos + 2]]) as usize;
+                pos += 3;
+                for _ in 0..n {
+                    ensure!(pos <= hvcc.len() && hvcc.len() - pos >= 2, "hvcC truncated");
+                    let len = u16::from_be_bytes([hvcc[pos], hvcc[pos + 1]]) as usize;
+                    pos += 2;
+                    ensure!(len <= hvcc.len() - pos, "hvcC truncated");
+                    let nal = &hvcc[pos..pos + len];
+                    if pass == 0 {
+                        let header = NalHeader::parse(nal)?;
+                        ensure!(
+                            [nal_type::VPS, nal_type::SPS, nal_type::PPS, nal_type::PREFIX_SEI, nal_type::SUFFIX_SEI].contains(&array_type),
+                            "hvcC array has unsupported NAL type {array_type}"
+                        );
+                        ensure!(header.nal_type == array_type, "hvcC array type {array_type} disagrees with NAL header type {}", header.nal_type);
+                    } else {
+                        self.handle_nal(nal, 0)?;
+                    }
+                    pos += len;
+                }
             }
         }
+        self.nal_length_size = Some((hvcc[21] & 3) as usize + 1);
         Ok(())
     }
 
@@ -391,10 +404,36 @@ impl Decoder {
             chroma_planes: if chroma == 0 { 0 } else { 2 },
             bytes_per_sample: 2,
         };
+        let frame_bytes = |f: &crate::picture::Frame| {
+            (f.width as u64)
+                .saturating_mul(f.height as u64)
+                .saturating_add((f.cwidth as u64).saturating_mul(f.cheight as u64).saturating_mul(2))
+                .saturating_mul(2)
+        };
+        // Output frames waiting to be returned stay allocated after they leave the DPB, at their
+        // own size: a resolution change in this call can leave pictures of the previous SPS.
+        let queued: u64 = self
+            .out_queue
+            .iter()
+            .filter(|o| !self.dpb.entries.iter().any(|e| Arc::ptr_eq(&e.frame, &o.frame)) && !self.in_flight.iter().any(|f| Arc::ptr_eq(f, &o.frame)))
+            .map(|o| frame_bytes(&o.frame))
+            .fold(0, u64::saturating_add);
+        // Frames the DPB holds now count at their own size too (an SPS change flushes them into the
+        // queue before the new pictures are made): the DPB part is the larger of its new slots and that.
+        let held: u64 = self.dpb.entries.iter().map(|e| frame_bytes(&e.frame)).fold(0, u64::saturating_add);
+        // A queued frame still being decoded is one of the in-flight pictures already reserved, so the
+        // queue and the in-flight reservation overlap: charge the larger, not both.
         let pictures = u64::from(sps.max_dec_pic_buffering) + 1 + self.max_in_flight as u64;
+        let slots = shape.store_bytes(u64::from(sps.max_dec_pic_buffering));
+        let flight = shape.store_bytes(self.max_in_flight as u64);
+        let total = shape
+            .store_bytes(1)
+            .zip(slots)
+            .zip(flight)
+            .map(|((one, slots), flight)| slots.max(held).saturating_add(one).saturating_add(flight).saturating_add(queued));
         ensure!(
-            shape.fits(pictures, self.memory_budget),
-            "{}x{} pictures with {pictures} in the decoder exceed the memory budget",
+            total.is_some_and(|b| b <= self.memory_budget),
+            "{}x{} pictures with {pictures} in the decoder and {queued} bytes queued exceed the memory budget",
             sps.width,
             sps.height
         );
@@ -561,9 +600,9 @@ fn run_job(
     draft: bool,
     shared: &Shared,
 ) {
-    let mut pic = PicState::new(frame.clone(), sps, pps, layout, scaling);
-    pic.draft = draft;
     let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+        let mut pic = PicState::new(frame.clone(), sps, pps, layout, scaling);
+        pic.draft = draft;
         let mut first_err = None;
         for s in &slices {
             if let Err(e) = SliceDecoder::decode(&mut pic, s) {
@@ -571,10 +610,10 @@ fn run_job(
             }
         }
         crate::filter::finish(&mut pic);
-        first_err
+        (pic, first_err)
     }));
-    let err = match result {
-        Ok(e) => e,
+    let (pic, err) = match result {
+        Ok((pic, err)) => (Some(pic), err),
         Err(_) => {
             // make sure readers never block on this frame
             let gray = Frame::gray(0, frame.poc, &frame);
@@ -584,18 +623,20 @@ fn run_job(
                     frame.publish(r, crate::picture::FrameRow { y: row.y.clone(), cb: row.cb.clone(), cr: row.cr.clone(), col: row.col.clone() });
                 }
             }
-            Some(Error::Invalid("internal error while decoding a picture".into()))
+            (None, Some(Error::Invalid("internal error while decoding a picture".into())))
         }
     };
     if let Ok(mut s) = shared.stats.lock() {
         s.pictures += 1;
-        for b in &pic.blk {
-            if b.flags & F_INTRA != 0 {
-                s.intra_4x4_blocks += 1;
-            } else if b.flags & F_SKIP != 0 {
-                s.skip_4x4_blocks += 1;
-            } else if b.flags != 0 {
-                s.inter_4x4_blocks += 1;
+        if let Some(pic) = &pic {
+            for b in &pic.blk {
+                if b.flags & F_INTRA != 0 {
+                    s.intra_4x4_blocks += 1;
+                } else if b.flags & F_SKIP != 0 {
+                    s.skip_4x4_blocks += 1;
+                } else if b.flags != 0 {
+                    s.inter_4x4_blocks += 1;
+                }
             }
         }
     }
@@ -649,5 +690,22 @@ fn make_picture(o: &Output) -> Picture {
         },
         sar: o.meta.sar,
         draft: o.meta.draft,
+    }
+}
+
+#[cfg(test)]
+mod config_tests {
+    use super::Decoder;
+
+    #[test]
+    fn hvcc_skips_prefix_and_suffix_sei_arrays() {
+        let mut config = vec![0; 23];
+        config[0] = 1;
+        config[22] = 2;
+        config.extend_from_slice(&[39, 0, 1, 0, 2, 0x4e, 0x01]);
+        config.extend_from_slice(&[40, 0, 1, 0, 2, 0x50, 0x01]);
+
+        let decoder = Decoder::from_hvcc(&config);
+        assert!(decoder.is_ok());
     }
 }
