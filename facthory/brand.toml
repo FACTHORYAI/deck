@@ -16,20 +16,22 @@ team = "ArtCraft team"
 repository = "https://github.com/storytold/deckcraft"
 
 [icon]
-# Composed by facthory/icons/compose.py from Facthory's mark (icons/brand/, unmodified) and an
-# original glyph; render.py renders the platform files from these four.
-svg = "deck.svg"
+# The glyph is deck.svg, unchanged; facthory/icons/fit.py places it: deck-macos.svg (Apple's grid) and
+# deck-flat.svg (Windows, Linux, the scalable icon). render.py renders the platform files from those.
+glyph = "deck.svg"
+svg = "deck-flat.svg"
 base = "facthorydeck"
 macos_svg = "deck-macos.svg"
-small_svg = "deck-small.svg"
-macos_small_svg = "deck-macos-small.svg"
-author = "Bandpey GmbH"
-source = "original artwork drawn in code (`facthory/icons/compose.py`) around Facthory's mark (`facthory/icons/brand/mark.svg`, unmodified)"
-licence = "MIT OR Apache-2.0, except Facthory's mark in it: trademark of Bandpey GmbH"
-note = """Facthory's marks (`facthory/icons/brand/`) are the brand of Bandpey GmbH, copied unmodified from the Facthory Design System. They are not open source and not covered by this project's MIT OR Apache-2.0 licence: they may be used unmodified only, to name Facthory's own builds, and a logo is never recoloured, stretched, cropped or redrawn. The glyphs and tiles around the mark in the app icons are original work by Bandpey GmbH, under this project's licence."""
+author = "with icons contributors; recoloured by Bandpey GmbH"
+source = "`presentation` in with icons' Chrome style (https://github.com/withevergrow/withicons at 996cc78), recoloured to the Deck colours"
+licence = "MIT"
+# The licence text, written at the end of ATTRIBUTION.md's Facthory block. The packages ship NOTICE,
+# not ATTRIBUTION.md, so a rule further down appends the same text to NOTICE.
+notice = "LICENSE-withicons.txt"
 # Upstream's assets/app-icon/ has neither <base>-macos-512.png nor <base>.svg.
 macos_512 = false
 svg_copy = false
+note = """Facthory's marks (`facthory/icons/brand/`, and the two renders of them in `app-icon/` that the About box draws) are the brand of Bandpey GmbH, copied unmodified from the Facthory Design System. They are not open source and not covered by this project's MIT OR Apache-2.0 licence: they may be used unmodified only, to name Facthory's own builds, and a logo is never recoloured, stretched, cropped or redrawn. They are not in the app icons."""
 
 # Facthory's other asset files, credited in ATTRIBUTION.md's Facthory block (render.py).
 [[asset]]
@@ -239,6 +241,41 @@ replace = """
       }
       $_
     } | ConvertTo-Json | Set-Content -Path $metadata -Encoding utf8
+"""
+count = 1
+
+# The Flatpak recipes name the shared updater's version folder under the ArtCraft name; our builds
+# leave that updater out (craft-update, above), so the folder goes. The update permissions stay:
+# upstream's test requires them (crates/ui-egui/tests/flatpak_updates.rs) and they name nobody.
+[[rule]]
+why = "The Flatpak recipes drop the shared updater's ArtCraft folder"
+files = ["packaging/linux/flatpak/ai.storyteller.deckcraft.yml", "packaging/linux/flatpak/ai.storyteller.deckcraft.bundle.yml"]
+find = "  - --filesystem=xdg-data/ArtCraft/versions:ro\n"
+replace = ""
+count = 2
+
+[[rule]]
+why = "The Flatpak image push names a fallback user: ours"
+files = "packaging/linux/flatpak-oci.sh"
+find = "${GITHUB_ACTOR:-storytold}"
+replace = "${GITHUB_ACTOR:-facthory}"
+count = 1
+
+# Upstream's HEVC decoder trips a lint that Rust 1.100's clippy added (needless_bool), and the
+# shared gate denies warnings. Upstream replaced this whole crate with craft-video after the
+# release we merge, so there is no fix of theirs to take; the guard keeps its shape and says why.
+[[rule]]
+why = "Rust 1.100 clippy: the deblocking guard's last condition"
+files = "crates/hevc/src/filter.rs"
+find = """
+        if !pic.pps.loop_filter_across_tiles && pic.layout.tile_id[pic.layout.rs_to_ts[nrs] as usize] != pic.layout.tile_id[cur_ts as usize] {
+            return false;
+        }
+        true
+"""
+replace = """
+        // The remaining tile check, written as the value it yields (clippy::needless_bool, 1.100).
+        !(!pic.pps.loop_filter_across_tiles && pic.layout.tile_id[pic.layout.rs_to_ts[nrs] as usize] != pic.layout.tile_id[cur_ts as usize])
 """
 count = 1
 
@@ -480,7 +517,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft-1024\.png`, `assets/app-icon/hicolor/\*/apps/ai\.storyteller\.deckcraft\.png` \|.*$'
-replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | Bandpey GmbH | original artwork drawn in code (`facthory/icons/compose.py`) around the Facthory mark (`facthory/icons/brand/mark.svg`, unmodified), rendered by `facthory/icons/render.py` | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | Facthory Deck app icon |'
+replace = '| `assets/app-icon/facthorydeck-1024.png`, `assets/app-icon/hicolor/*/apps/com.facthory.deck.png` | with icons contributors; recoloured by Bandpey GmbH | `presentation` from with icons (Chrome style), recoloured (`facthory/icons/deck.svg`), rendered by `facthory/icons/render.py` | MIT | Facthory Deck app icon |'
 regex = true
 count = 1
 
@@ -488,7 +525,7 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/deckcraft\.icns`, `assets/app-icon/deckcraft\.ico` \|.*$'
-replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` (macOS) and `facthory/icons/deck.svg` (Windows) by `facthory/icons/render.py` | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | macOS and Windows app icons |'
+replace = '| `assets/app-icon/facthorydeck.icns`, `assets/app-icon/facthorydeck.ico` | with icons contributors; recoloured by Bandpey GmbH | rendered from `facthory/icons/deck-macos.svg` (macOS) and `facthory/icons/deck.svg` (Windows) by `facthory/icons/render.py` | MIT | macOS and Windows app icons |'
 regex = true
 count = 1
 
@@ -496,24 +533,49 @@ count = 1
 phase = "after"
 files = "ATTRIBUTION.md"
 find = '^\| `assets/app-icon/hicolor/scalable/apps/ai\.storyteller\.deckcraft\.svg` \|.*$'
-replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | Bandpey GmbH | a copy of `facthory/icons/deck.svg`, drawn in code around the Facthory mark | MIT OR Apache-2.0, except the Facthory mark in it: trademark of Bandpey GmbH | Scalable app icon for Linux desktops (hicolor theme) |'
+replace = '| `assets/app-icon/hicolor/scalable/apps/com.facthory.deck.svg` | with icons contributors; recoloured by Bandpey GmbH | a copy of `facthory/icons/deck.svg` (`presentation` from with icons) | MIT | Scalable app icon for Linux desktops (hicolor theme) |'
 regex = true
 count = 1
 
 [[rule]]
 phase = "after"
-why = "NOTICE ships in every package and ATTRIBUTION.md does not, so the note on Facthory's marks is appended there; upstream's text above it is unchanged"
+why = "NOTICE ships in every package and ATTRIBUTION.md does not, so the app icon's MIT notice is appended there; upstream's text above it is unchanged"
 files = "NOTICE"
 find = '\Z'
 replace = '''
 
 Facthory Deck addendum (Bandpey GmbH; the notice above is upstream's, unchanged)
 
-- The Facthory Deck app icon (assets/app-icon/, also painted in the app) is original artwork by
-  Bandpey GmbH around Facthory's mark, under MIT OR Apache-2.0 except for the mark itself.
-  Facthory's marks (the logo files under assets/app-icon/*-logo-*.png, and the mark inside the
-  icons) are the trademark of Bandpey GmbH. They are not open source: they may be used unmodified
-  only, to name Facthory's own builds, and are never recoloured, stretched, cropped or redrawn.
+- The Facthory Deck app icon (assets/app-icon/, also painted in the app) is `presentation` from
+  with icons in its Chrome style, https://github.com/withevergrow/withicons at commit 996cc78,
+  recoloured by Bandpey GmbH. MIT License, Copyright (c) 2026 with icons contributors.
+
+  MIT License
+
+  Copyright (c) 2026 with icons contributors
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+- The Facthory mark drawn in the app (assets/app-icon/*-logo-light.png and *-logo-dark.png) is the
+  trademark of Bandpey GmbH. It is not open source: it may be used unmodified only, to name
+  Facthory's own builds, and is never recoloured, stretched, cropped or redrawn. It is not in the
+  app icon.
 '''
 regex = true
 count = 1
