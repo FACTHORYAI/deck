@@ -21,7 +21,7 @@ Files Facthory adds to upstream's tree, and nothing else:
 | `facthory/icons/render.py` | Renders the icon set (`facthory/icons/app-icon/`, committed: `.icns`, `.ico`, hicolor PNGs, the scalable icon, and the Facthory mark for the About box in a light and a dark file) with resvg, and credits it in `ATTRIBUTION.md` |
 | `facthory/icons/proof.py`, `facthory/icons/proof/` | The contact sheet of the icon (main's old icon beside the new one, light and dark tiles, backed and unbacked cut-outs, light and dark grounds, 2x) |
 | `facthory/icons/brand/` | Facthory's own marks (mark, mono mark, word marks), unmodified from the Facthory Design System; the About box draws the mark, never recoloured, stretched, cropped or redrawn. Not in the app icons |
-| `facthory/sync.py` | Merges the next upstream release (W3), resolving the two known conflicts below |
+| `facthory/sync.py`, `facthory/test_sync.py` | Merges the next upstream release (W3), resolving the known conflicts below (a `[sync].removed` entry ending in `/` is a directory, e.g. `crates/hevc/`, which upstream deleted), with its tests (`python3 facthory/test_sync.py`) |
 | `facthory/README.md` | This list |
 | `facthory/.gitignore` | Keeps Python's bytecode out of the repository |
 | `.github/README.md` | The repository's front page |
@@ -39,6 +39,7 @@ Files Facthory adds to upstream's tree, and nothing else:
 | `facthory/dmg/background.svg` | The disk image window, from upstream's, in our colours and with our name |
 | `facthory/update/facthory_update.rs` | The updater, copied into the app at build time (see Updates) |
 | `facthory/update/updates_ui.rs` | Replaces upstream's update window (`crates/ui-egui/src/dialogs/updates_ui.rs`): Help's Check for Updates opens our latest release; upstream's updater is left out (see Updates) |
+| `.github/workflows/facthory-codeql.yml` | CodeQL for rust, python and actions, by hand only: writes SARIF without uploading it to code scanning and keeps it as the artifact `codeql-sarif` (14 days), so the findings of GitHub's default setup can be read |
 | `.github/workflows/facthory-fidelity.yml` | The fidelity corpus run: weekly, by hand, and on corpus changes; pass rates as the job summary |
 | `facthory/corpus/` | The fidelity corpus (W6): `corpus.toml` (real Office files, pinned, never committed), `fidelity.py` (the runner), `scan.py` (checks a candidate file), and its README |
 | `facthory/store/listing.md` | The Microsoft Store listing (W9): every field ready to paste, with what must happen before it is submitted |

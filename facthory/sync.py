@@ -5,7 +5,9 @@ Upstream ([upstream].repository in facthory/brand.toml) tags each release vX.Y.Z
 release is the oldest such tag HEAD does not contain, so releases land one at a time, in order.
 The patch set adds files and touches upstream's tree in two known ways, which resolve here:
 
-  [sync].removed   upstream files we removed: a merge that changed them keeps them removed;
+  [sync].removed   upstream files we removed: a merge that changed them keeps them removed. An
+                   entry ending in `/` is a directory: everything under it, which is how a
+                   directory upstream deleted resolves when our commits had edited a file in it;
   ATTRIBUTION.md   our block under the title: take upstream's file and write the block again
                    (facthory/icons/render.py --attribution).
 
@@ -63,13 +65,17 @@ def next_release() -> str | None:
     return None
 
 
+def is_removed(path: str, removed: list[str]) -> bool:
+    return any(path == r or (r.endswith("/") and path.startswith(r)) for r in removed)
+
+
 def merge(tag: str, name: str, removed: list[str]) -> list[str]:
     """Merge `tag`; the paths left in conflict, or none when it merged."""
     r = git("merge", "--no-ff", "--no-edit", "-m", f"Merge upstream {name} {tag}", f"refs/upstream-tags/{tag}", check=False)
     if r.returncode == 0:
         return []
     unmerged = sorted(set(git("diff", "--name-only", "--diff-filter=U").stdout.split()))
-    rest = [p for p in unmerged if p not in removed and p != ATTRIBUTION]
+    rest = [p for p in unmerged if not is_removed(p, removed) and p != ATTRIBUTION]
     if rest or not unmerged:
         git("merge", "--abort", check=False)
         return rest or ["(merge failed: " + r.stderr.strip().splitlines()[-1] + ")"]
