@@ -749,4 +749,6 @@ allow = [
 # facthory/sync.py: upstream files the patch set removed stay removed when a merge changes them.
 
 [sync]
-removed = [".github/dependabot.yml"]
+# crates/hevc/: upstream deleted it in a82e37d (after v0.18.1); our commit f3371be edited
+# crates/hevc/src/filter.rs, so the merge that brings the deletion conflicts (modify/delete).
+removed = [".github/dependabot.yml", "crates/hevc/"]
