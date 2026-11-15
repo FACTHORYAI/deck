@@ -352,35 +352,6 @@ python3 "$ROOT/facthory/appicon.py" build --icon "$ROOT/assets/app-icon/deckcraf
 '''
 count = 1
 
-# eframe sets the Dock icon at runtime from the window's icon (NSApplication setApplicationIconImage), which
-# would replace the bundle's appearance-aware icon with one fixed image while the app runs: the white tile in a
-# dark Dock. An empty icon is eframe's documented way to set none (NativeOptions::viewport, with_icon).
-[[rule]]
-why = "macOS: no runtime Dock icon, so the bundle's appearance-aware icon is the one the Dock shows"
-files = "apps/deckcraft/src/main.rs"
-find = '''
-fn app_icon() -> Option<egui::IconData> {
-    let png: &[u8] = include_bytes!("../../../assets/app-icon/hicolor/256x256/apps/ai.storyteller.deckcraft.png");
-    eframe::icon_data::from_png_bytes(png).map_err(|e| log::warn!("app icon: {e}")).ok()
-}
-'''
-replace = '''
-/// Window and taskbar icon. On macOS the bundle's own icon (Assets.car, with the .icns) follows the system's
-/// appearance, and eframe's runtime Dock icon would replace it with one fixed image: an empty icon sets none.
-#[cfg(target_os = "macos")]
-fn app_icon() -> Option<egui::IconData> {
-    Some(egui::IconData::default())
-}
-
-/// Window and taskbar icon.
-#[cfg(not(target_os = "macos"))]
-fn app_icon() -> Option<egui::IconData> {
-    let png: &[u8] = include_bytes!("../../../assets/app-icon/hicolor/256x256/apps/ai.storyteller.deckcraft.png");
-    eframe::icon_data::from_png_bytes(png).map_err(|e| log::warn!("app icon: {e}")).ok()
-}
-'''
-count = 1
-
 # Notarization with the App Store Connect API key of Bandpey GmbH's other releases, not an Apple
 # account's app-specific password: package.sh reads the key's file, id and issuer (the release
 # workflow writes the .p8 under $RUNNER_TEMP, mode 600, and removes it again).
